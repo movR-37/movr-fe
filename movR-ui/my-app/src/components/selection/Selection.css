@@ -1,0 +1,127 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2 {
+  font-weight: bold;
+}
+
+.grandParentContainer {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(182, 12, 168, 0),
+      rgba(20, 1, 18, 0.726)
+    ),
+    url("../../images/mapImage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownBar {
+  margin: auto;
+  text-align: center;
+}
+
+.dropdown-select {
+  width: 100%;
+  height: 50px;
+  border-radius: 15px;
+  border: none !important;
+}
+
+.get-started {
+  display: inline-block;
+  height: 38px;
+  font-weight: 450 !important;
+  background: #f50057;
+  border-radius: 10px !important;
+  text-align: center;
+  width: 100%;
+}
+
+.get-started:hover {
+  background-color: #f50057;
+}
+
+.headerFont {
+  color: white;
+  font-family: Verdana;
+  font-weight: bold;
+  margin-top: 200px;
+}
+
+.parentContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.Dropdown-arrow {
+  border: none;
+}
+
+.dropdown-container {
+  width: 100%;
+  height: 66px;
+  border-radius: 200px;
+  display: flex;
+  align-items: center;
+  /* background-color: rgba(254, 254, 254, 0.76) !important; */
+  background-color: whitesmoke!important;
+  justify-content: center;
+}
+
+.dropdownBtn {
+  margin-left: auto;
+}
+
+.Dropdown-control {
+  width: 30vh;
+  height: 50px;
+  border-radius: 200px;
+  display: flex;
+  align-items: center;
+  /* background-color: rgba(254, 254, 254, 0.76) !important; */
+  background-color: #f7f7f7 !important;
+  justify-content: center;
+  border: none !important;
+}
+
+@media screen and (max-width: 600px) {
+  .parentContainer {
+    display: none;
+  }
+
+  .get-started-small {
+    display: inline-block;
+    height: 55px;
+    font-weight: 450 !important;
+    background: #f50057;
+    border-radius: 10px !important;
+    text-align: center;
+    width: 80%;
+  }
+
+  .selection-heading {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .get-started-small-container {
+    display: none;
+  }
+
+  .get-started-small {
+    display: none;
+  }
+}
