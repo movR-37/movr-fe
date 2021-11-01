@@ -3,6 +3,10 @@ name: Build And Test
 on:
   push:
 
+defaults:
+  run:
+    working-directory: ./movR-ui/my-app/
+
 jobs:
   buid_and_test:
     runs-on: ubuntu-latest
