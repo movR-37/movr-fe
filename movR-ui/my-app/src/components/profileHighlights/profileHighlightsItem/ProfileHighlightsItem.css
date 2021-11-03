@@ -1,0 +1,26 @@
+.highlights{
+    display: flex;
+    margin: 30px 0;
+}
+
+.highlights-icon{
+    padding-top: 3px;
+}
+
+.highlights-text{
+    margin-left: 10px;
+}
+
+
+.highlights-text-title{
+    font-size: large;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.highlights-text-subtitle{
+    max-width: 500px;
+    line-height: 22px;
+    font-weight: 300;
+    font-size: medium;
+}

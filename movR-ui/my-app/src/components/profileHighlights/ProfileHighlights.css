@@ -1,0 +1,17 @@
+.highlights-container{
+    width: 100%;
+    max-width: 700px;
+}
+
+.highlights-header{
+    display: flex;
+}
+
+.title-text{
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.header-icon{
+    margin-left: auto;
+}
