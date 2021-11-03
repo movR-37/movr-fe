@@ -43,7 +43,7 @@ export default function ProfilePage() {
   ];
 
   let highlightsData: IProfileHighlightsProps = {
-    profileType: "Venue",
+    profileType: "Mover",
     profileIconUrl: "https://image.flaticon.com/icons/png/512/903/903426.png",
     highlightItems
   };
@@ -100,9 +100,6 @@ export default function ProfilePage() {
                 highlightItems={highlightsData.highlightItems} />
               <AboutProfile profileType={aboutData.profileType} aboutBody={aboutData.aboutBody} />
               <hr></hr>
-            </div>
-            <div className="reservation-component">
-              <BookingReservation />
             </div>
           </div>
 
