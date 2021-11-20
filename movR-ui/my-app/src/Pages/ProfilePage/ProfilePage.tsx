@@ -26,7 +26,6 @@ export default function ProfilePage() {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
-  const [data, setData] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -47,31 +46,31 @@ export default function ProfilePage() {
 
   let headerData: IProfileHeaderProps = {
     title: name,
-    noOfReviews: "156",
-    rating: "4.1",
-    location: "Montreal Downtown, QC, Canada"
+    noOfReviews: numReviews,
+    rating,
+    location
   };
 
   let highlightItems: IProfileHighlightsItemProps[] = [
     {
       iconUrl: "https://image.flaticon.com/icons/png/512/484/484167.png",
       title: "Mover Location",
-      subtitle: "63 Sherbrooke St East"
+      subtitle: address
     },
     {
       iconUrl: "https://image.flaticon.com/icons/png/512/844/844198.png",
       title: "Moving Capacity",
-      subtitle: "Can move upto 2 people"
+      subtitle: subtitle_2
     },
     {
       iconUrl: "https://image.flaticon.com/icons/png/512/633/633991.png",
       title: "Highly Rated",
-      subtitle: "This is one of the highly rated mover"
+      subtitle: subtitle_3
     },
   ];
 
   let highlightsData: IProfileHighlightsProps = {
-    profileType: "Mover",
+    profileType,
     profileIconUrl: "https://image.flaticon.com/icons/png/512/903/903426.png",
     highlightItems
   };
