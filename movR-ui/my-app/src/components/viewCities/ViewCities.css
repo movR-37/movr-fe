@@ -1,0 +1,20 @@
+.view-cities-master-container{
+    margin-top: 32px;
+}
+
+.view-cities-grid-container{
+    align-content: space-around;
+}
+
+.view-cities-title{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+@media (max-width: 599px) 
+{  
+    .view-cities-title{
+        font-size: 20px;
+        font-weight: 500;
+    }
+}

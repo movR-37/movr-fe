@@ -1,0 +1,73 @@
+.hallContainer {
+  margin: 0 auto;
+  max-width: 1150px;
+}
+
+.temp {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-wrap: initial;
+  position: relative;
+  justify-content: space-between;
+}
+
+.left-column {
+  width: 100%;
+  max-width: 700px;
+}
+
+.reservation-component {
+  margin-left: 40px;
+}
+
+.reservation-component {
+  position: sticky;
+  top: 50px;
+  align-self: flex-start;
+}
+
+.reservation {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-reservation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 75px;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  bottom: 0;
+  z-index: 5;
+  border-radius: 5px;
+  outline: 1px solid rgba(196, 195, 195, 0.5);
+}
+
+.modalButton {
+  background: rgb(157, 78, 221);
+  background: radial-gradient(
+    circle,
+    rgba(157, 78, 221, 1) 0%,
+    rgba(176, 78, 221, 1) 100%
+  );
+  text-align: center;
+  height: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .reservation-component {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .footer-reservation {
+    display: none;
+  }
+}

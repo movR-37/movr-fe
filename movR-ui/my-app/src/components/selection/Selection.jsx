@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, NativeSelect } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import "react-dropdown/style.css";
 import "./Selection.css";
@@ -13,18 +14,17 @@ export default function Selection() {
   ];
 
   const opts = [
-    "Driver",
-    "Mover",
-    "Become a Driver",
-    "Become a Mover"
+    "Mover"
   ];
+  const history = useHistory();
+
 
   return (
-    <div className="grandParentContainer">
+    <div data-testid="masterDiv" className="grandParentContainer">
       <div className="dropdownBar">
         <div className="headerFont">
-          <h1 className="title">Let us help you make moving easier!</h1>
-          <h2 className="selection-heading">
+          <h1 data-testid="title1" className="title">Let us help you make moving easier!</h1>
+          <h2 data-testid="title2"className="selection-heading">
             Join the MovR community now.
           </h2>
         </div>
@@ -43,7 +43,7 @@ export default function Selection() {
 
           <Grid container className='dropdown-container'>
 
-            <Grid item={true} xs={4} className='selection-ddI'>
+            <Grid data-testid="optionsDropDown" item={true} xs={4} className='selection-ddI'>
 
               <NativeSelect
                 className="dropdown-select"
@@ -58,7 +58,7 @@ export default function Selection() {
 
             </Grid>
 
-            <Grid item={true} xs={4} className='selection-ddII'>
+            <Grid data-testid="cityDropDown" item={true} xs={4} className='selection-ddII'>
 
               <NativeSelect
                 className="dropdown-select"
@@ -76,10 +76,11 @@ export default function Selection() {
             <Grid item={true} xs={3} >
 
               <div className="dropdownBtn">
-                <Button
+                <Button data-testid="getStartedButton"
                   variant="contained"
                   color="secondary"
                   className="get-started"
+                  onClick={() => history.push('/profile')}
                 >
                   Get Started
                 </Button>

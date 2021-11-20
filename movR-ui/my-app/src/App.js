@@ -6,12 +6,13 @@ import Login from './components/Login.jsx'
 import MapComponent from './components/Map/MapComponent.jsx'
 import HomePage from './components/Home/HomePage.jsx'
 import Chat from './components/Chat/Chat';
+import Profile from './Pages/ProfilePage/ProfilePage'
 
 function App() {
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div>
+      <header>
         <Router>
           <Switch>
             <Route path="/login" component={Login} />
@@ -19,6 +20,7 @@ function App() {
             <Route path="/map" component={MapComponent} />
             <Route path="/home" component={HomePage} />
             <Route path="/chat" component={Chat} />
+            <Route path="/profile" component={Profile} />
             <Redirect exact from="/" to="/login" />
           </Switch>
         </Router>

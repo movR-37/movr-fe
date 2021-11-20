@@ -1,0 +1,37 @@
+name: Build And Test
+
+on:
+  push: 
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+defaults:
+  run:
+    working-directory: ./movR-ui/my-app/
+
+jobs:
+  buid_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Install Dependencies
+        run: |
+          npm install
+      - name: Build app
+        run: |
+          npm run build
+        env:
+          CI: false
+          SKIP_PREFLIGHT_CHECK: true
+
+      - name: Test
+        run: |
+          npm run test
