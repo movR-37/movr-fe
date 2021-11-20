@@ -14,6 +14,7 @@ import { IProfileHighlightsProps } from "../../components/profileHighlights/Prof
 import { IAboutProfileProps } from "../../components/aboutProfile/AboutProfile";
 import { ClickAwayListener, IconButton, Button } from "@material-ui/core";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import axios from "axios"
 
 export default function ProfilePage() {
 
@@ -25,26 +26,23 @@ export default function ProfilePage() {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
-      let data = await fetch("http://localhost:8000/users/619958edc48cc5858911764a");
-      data = await data.json();
-      console.log(data);
-      return data;
-      // setName(data.name);
-      // setNumReviews(data.noOfReviews);
-      // setRating(data.rating);
-      // setLocation(data.location);
-      // setAddress(data.address);
-      // setSubtitle_2(data.subtitle_2);
-      // setSubtitle_3(data.subtitle_3);
-      // setProfileType(data.profileType);
+      const response = await axios.get('http://localhost:8000/users/619958edc48cc5858911764a');
+      const data = response.data;
+      setName(data.name);
+      setNumReviews(data.noOfReviews);
+      setRating(data.rating);
+      setLocation(data.location);
+      setAddress(data.address);
+      setSubtitle_2(data.subtitle_2);
+      setSubtitle_3(data.subtitle_3);
+      setProfileType(data.profileType);
     }
 
-    const fetcher = fetchUser();
-
-
+    fetchUser();
   }, []);
 
   let headerData: IProfileHeaderProps = {

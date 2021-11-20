@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 import "./ProfileHeader.css"
 
 export interface IProfileHeaderProps {
-    title?: string,
+    title: string,
     rating: string,
     noOfReviews: string,
     location: string
