@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
 import photos from "./temp_assets/photos.png";
 import ProfileHeader from "../../components/profileHeader/ProfileHeader";
@@ -17,8 +17,38 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 export default function ProfilePage() {
 
+  const [name, setName] = useState("");
+  const [numReviews, setNumReviews] = useState("");
+  const [rating, setRating] = useState("");
+  const [location, setLocation] = useState("");
+  const [address, setAddress] = useState("");
+  const [subtitle_2, setSubtitle_2] = useState("");
+  const [subtitle_3, setSubtitle_3] = useState("");
+  const [profileType, setProfileType] = useState("");
+
+  useEffect(() => {
+    async function fetchUser() {
+      let data = await fetch("http://localhost:8000/users/619958edc48cc5858911764a");
+      data = await data.json();
+      console.log(data);
+      return data;
+      // setName(data.name);
+      // setNumReviews(data.noOfReviews);
+      // setRating(data.rating);
+      // setLocation(data.location);
+      // setAddress(data.address);
+      // setSubtitle_2(data.subtitle_2);
+      // setSubtitle_3(data.subtitle_3);
+      // setProfileType(data.profileType);
+    }
+
+    const fetcher = fetchUser();
+
+
+  }, []);
+
   let headerData: IProfileHeaderProps = {
-    title: "Veronica Doe",
+    title: name,
     noOfReviews: "156",
     rating: "4.1",
     location: "Montreal Downtown, QC, Canada"
