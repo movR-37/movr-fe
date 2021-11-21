@@ -15,6 +15,7 @@ import { IAboutProfileProps } from "../../components/aboutProfile/AboutProfile";
 import { ClickAwayListener, IconButton, Button } from "@material-ui/core";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import axios from "axios"
+import Modal from '../../components/reviewModal';
 
 export default function ProfilePage() {
 
@@ -26,6 +27,7 @@ export default function ProfilePage() {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     async function fetchUser() {
@@ -114,6 +116,8 @@ export default function ProfilePage() {
           </Dialog>
         ) : undefined}
       </div>
+      <button className="openModalbtn" onClick={() => {setOpenModal(true)}}>open</button>
+              {openModal && <Modal closeModal={setOpenModal}/> } 
       <Container maxWidth="lg" className="container">
         <div className="hallContainer">
           <ProfileHeader title={headerData.title} noOfReviews={headerData.noOfReviews} rating={headerData.rating} location={headerData.location} />
@@ -126,6 +130,7 @@ export default function ProfilePage() {
                 profileIconUrl={highlightsData.profileIconUrl}
                 highlightItems={highlightsData.highlightItems} />
               <AboutProfile profileType={aboutData.profileType} aboutBody={aboutData.aboutBody} />
+             
               <hr></hr>
             </div>
           </div>
