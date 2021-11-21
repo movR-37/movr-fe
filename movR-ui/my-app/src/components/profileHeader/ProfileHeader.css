@@ -1,0 +1,45 @@
+.header{
+    margin: 20px 0;
+}
+
+.title{
+    margin-bottom: 5px;
+}
+
+.seperator{
+    font-weight: bold;
+    line-height:0;
+}
+
+.subtitle{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.spacer{
+    margin: 0 6px;
+}
+
+.margin-auto-div{
+    margin-left: auto;
+}
+
+.share-div{
+    width: auto;
+    display: flex;
+    float: right;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@media (max-width: 433px) 
+{
+    .reviews-text
+    {
+        display: none;
+    }
+
+    .share-div{
+        display: none;
+    }
+}

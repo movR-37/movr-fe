@@ -1,0 +1,28 @@
+.about-container{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+
+.about-title{
+    margin-bottom: 10px;
+}
+
+.title-text{
+    font-weight: 400;
+    font-size: 30px;
+}
+
+.about-body{
+    line-height: 24px;
+    font-weight: 300;
+}
+
+.show-more-less{
+    font-weight: 600;
+    color: black;
+}
+
+.button-arrow{
+    width: 1.3%;
+}

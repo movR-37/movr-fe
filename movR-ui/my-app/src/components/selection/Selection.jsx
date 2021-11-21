@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, NativeSelect } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import "react-dropdown/style.css";
 import "./Selection.css";
@@ -13,11 +14,10 @@ export default function Selection() {
   ];
 
   const opts = [
-    "Driver",
-    "Mover",
-    "Become a Driver",
-    "Become a Mover"
+    "Mover"
   ];
+  const history = useHistory();
+
 
   return (
     <div data-testid="masterDiv" className="grandParentContainer">
@@ -80,6 +80,7 @@ export default function Selection() {
                   variant="contained"
                   color="secondary"
                   className="get-started"
+                  onClick={() => history.push('/profile')}
                 >
                   Get Started
                 </Button>
