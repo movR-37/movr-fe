@@ -64,6 +64,7 @@ export default function Form() {
                 <FormHelperText id="outlined-Distance-helper-text">Distance</FormHelperText>
                 </FormControl>
                 <br/>
+                <br/>
                 <p>Hourly rate: 30$</p>
                 <p>Tax: 15%</p>
                 {/* cost calculated by current cost of petrol =1.67/l x  estimated distance * mileage + hourlycost + tax*/}
@@ -71,8 +72,7 @@ export default function Form() {
                 value = {hourlyRate} 
                 onChange={e => setHourlyRate(e.target.value)}>
                 </input> */}
-                <br/>
-                 
+                 <br/>
                 <FormControl component="fieldset">
                 <FormLabel component="legend">Select Tip %</FormLabel>
                 <RadioGroup row aria-label="tip" name="row-radio-buttons-group" defaultValue="15"
