@@ -47,7 +47,7 @@ export default function HomepageSelection() {
         variant="contained"
         color="secondary"
         className="get-started"
-        onClick={() => history.push("/chat")}
+        onClick={() => history.push("/profile")}
       >
         Get Started
       </Button>
