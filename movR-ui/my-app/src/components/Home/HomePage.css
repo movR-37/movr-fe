@@ -1,0 +1,22 @@
+.homePage-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  overflow-x: hidden;
+  height: 100%;
+  /* width: 100%; */
+}
+.homePage-map {
+  /* flex-basis: 75%; */
+  height: 100%;
+}
+
+.homePage-selection {
+  width: 25%;
+  height: 100%;
+}
+
+.homePagecontent {
+  width: 80%;
+  margin: 85px auto;
+}
