@@ -116,7 +116,6 @@ export default function ProfilePage() {
           </Dialog>
         ) : undefined}
       </div>
-      <Form></Form>
       <Container maxWidth="lg" className="container">
         <div className="hallContainer">
           <ProfileHeader title={headerData.title} noOfReviews={headerData.noOfReviews} rating={headerData.rating} location={headerData.location} />
@@ -129,8 +128,11 @@ export default function ProfilePage() {
                 profileIconUrl={highlightsData.profileIconUrl}
                 highlightItems={highlightsData.highlightItems} />
               <AboutProfile profileType={aboutData.profileType} aboutBody={aboutData.aboutBody} />
-             
+
               <hr></hr>
+            </div>
+            <div className="review-component">
+              <Form />
             </div>
           </div>
 
