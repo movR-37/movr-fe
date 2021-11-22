@@ -17,11 +17,9 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import axios from "axios"
 import { useHistory } from "react-router-dom";
 import fire from "../../config/firebase.config";
+import Form from '../../components/Form.jsx';
 
 export default function ProfilePage() {
-
-  const history = useHistory();
-  const user = fire.auth().currentUser;
 
   const [name, setName] = useState("");
   const [numReviews, setNumReviews] = useState("");
@@ -31,6 +29,7 @@ export default function ProfilePage() {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     async function fetchUser() {
@@ -131,7 +130,11 @@ export default function ProfilePage() {
                 profileIconUrl={highlightsData.profileIconUrl}
                 highlightItems={highlightsData.highlightItems} />
               <AboutProfile profileType={aboutData.profileType} aboutBody={aboutData.aboutBody} />
+
               <hr></hr>
+            </div>
+            <div className="review-component">
+              <Form />
             </div>
           </div>
 
