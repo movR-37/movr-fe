@@ -18,6 +18,7 @@ import axios from "axios"
 import { useHistory } from "react-router-dom";
 import fire from "../../config/firebase.config";
 import Form from '../../components/Form.jsx';
+import { SettingsBackupRestoreOutlined } from "@material-ui/icons";
 
 export default function ProfilePage() {
 
@@ -29,11 +30,12 @@ export default function ProfilePage() {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
+  const [about, setAbout] = useState("");
   const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await axios.get('http://localhost:8000/users/619958edc48cc5858911764a');
+      const response = await axios.get('http://localhost:8000/users/619bef5149082a3546e3c00b');
       const data = response.data;
       setName(data.name);
       setNumReviews(data.noOfReviews);
@@ -43,6 +45,7 @@ export default function ProfilePage() {
       setSubtitle_2(data.subtitle_2);
       setSubtitle_3(data.subtitle_3);
       setProfileType(data.profileType);
+      setAbout(data.about);
     }
 
     fetchUser();
@@ -79,18 +82,7 @@ export default function ProfilePage() {
     highlightItems
   };
 
-  const aboutBody = "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum. " +
-    "lorem Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum" +
-    " Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem IspumLorem Ispum " +
-    "Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum" +
-    " Lorem Ispum Lorem Ispum Lorem IspumLorem IspumLorem Ispumv  v Lorem Ispum Lorem Ispum Lorem Ispum Lorem Ispum" +
-    "This is a 2 bedroom 2 bathroom cabin. The master bedroom is upstairs with a king sized bed & private bathroom." +
-    " There is also a downstairs bathroom and bedroom with a queen sized bed." +
-
-    "The living room sofa is a futon and can accommodate additional guests if needed." +
-    " The upstairs loft also offers additional space." +
-    "The hot tub is available for you to soak your cares away year round, day or night." +
-    "Then you can come inside and enjoy the fireplace in the cozy living room.";
+  const aboutBody = about;
 
   const aboutData: IAboutProfileProps = {
     profileType: "Venue",
