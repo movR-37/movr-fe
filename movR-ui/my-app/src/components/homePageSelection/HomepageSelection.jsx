@@ -17,6 +17,7 @@ export default function HomepageSelection() {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Select Location"
+          data-testid= "demo-simple-select-id"
         >
           <MenuItem value={"Montreal"}>Montreal</MenuItem>
         </Select>
@@ -32,6 +33,7 @@ export default function HomepageSelection() {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Select Service"
+          data-testid= "optionsDropDown"
         >
           <MenuItem value={"Mover"}>Mover</MenuItem>
           <MenuItem value={"Driver"}>Driver</MenuItem>

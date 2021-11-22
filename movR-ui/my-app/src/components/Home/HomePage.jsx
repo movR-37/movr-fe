@@ -7,7 +7,7 @@ import "./HomePage.css";
 
 export default function HomePage() {
   return (
-    <div className="homePage-container">
+    <div className="homePage-container" data-testid="masterDiv">
       <div className="homePage-selection">
         <div className="logo">
           <img src={logo} alt="" srcset="" className="logoHome" />
