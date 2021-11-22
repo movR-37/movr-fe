@@ -18,10 +18,9 @@ function App() {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/map" component={MapComponent} />
-            <Route path="/home" component={HomePage} />
-            <Route path="/chat" component={ChatComponent} />
-            <Route path="/profile" component={Profile} />
+            <Route path="/:uid/home" exact component={HomePage} />
+            <Route path="/:uid/chat" component={ChatComponent} />
+            <Route path="/profile" exact component={Profile} />
             <Redirect exact from="/" to="/login" />
           </Switch>
         </Router>

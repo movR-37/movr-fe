@@ -32,7 +32,7 @@ function RegistrationComp({ formData, classData }) {
       history.push("/login");
     }
     else {
-      history.push(`/home`);
+      history.push(`${user.uid}/home`);
     }
   };
 

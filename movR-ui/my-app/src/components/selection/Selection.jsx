@@ -4,9 +4,12 @@ import { useHistory } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import "react-dropdown/style.css";
 import "./Selection.css";
+import fire from "../../config/firebase.config";
 
 
 export default function Selection() {
+
+  const user = fire.auth().currentUser;
 
   const cities = [
     "Montreal",
@@ -24,7 +27,7 @@ export default function Selection() {
       <div className="dropdownBar">
         <div className="headerFont">
           <h1 data-testid="title1" className="title">Let us help you make moving easier!</h1>
-          <h2 data-testid="title2"className="selection-heading">
+          <h2 data-testid="title2" className="selection-heading">
             Join the MovR community now.
           </h2>
         </div>
@@ -80,7 +83,7 @@ export default function Selection() {
                   variant="contained"
                   color="secondary"
                   className="get-started"
-                  onClick={() => history.push('/profile')}
+                  onClick={() => history.push(`/profile`)}
                 >
                   Get Started
                 </Button>
