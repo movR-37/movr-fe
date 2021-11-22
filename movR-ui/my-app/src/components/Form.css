@@ -1,0 +1,17 @@
+.reviewFormContainer {
+  border-radius: 25px;
+  width: 500px;
+  min-height: 450px;
+  margin: 0 auto;
+  background-color: rgb(243, 232, 217);
+  text-align: center;
+  justify-items: center;
+}
+
+.reviewForm-input {
+  margin-top: 15px;
+}
+
+.gotoChat {
+  margin-top: 15px;
+}

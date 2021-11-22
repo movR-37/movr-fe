@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import image from "./icons/login.png";
+import logo from "../../images/movr.png";
 import { useHistory } from "react-router-dom";
 import fire from "../../config/firebase.config";
 import userStatus from "../../UserLoginStatus";
@@ -56,7 +57,7 @@ function RegistrationComp({ formData, classData }) {
       <div className="container-login100">
         <div className="wrap-login100">
           <div className="login100-pic">
-            <img src={image} alt="IMG" />
+            <img src={logo} alt="IMG" />
           </div>
 
           <div

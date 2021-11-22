@@ -7,6 +7,7 @@ import MapComponent from './components/Map/MapComponent.jsx'
 import HomePage from './components/Home/HomePage.jsx'
 import Chat from './components/Chat/Chat';
 import Profile from './Pages/ProfilePage/ProfilePage'
+import ChatComponent from './components/Chat/ChatComponent';
 
 function App() {
 
@@ -17,9 +18,8 @@ function App() {
           <Switch>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/map" component={MapComponent} />
             <Route path="/:uid/home" exact component={HomePage} />
-            <Route path="/chat" component={Chat} />
+            <Route path="/:uid/chat" component={ChatComponent} />
             <Route path="/profile" exact component={Profile} />
             <Redirect exact from="/" to="/login" />
           </Switch>
