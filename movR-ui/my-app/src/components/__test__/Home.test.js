@@ -21,14 +21,6 @@ it("HomePage - renders Page without crashing", () => {
     expect(linkElement).toBeInTheDocument();
 })
 
-it("HomePage - renders title without crashing", () => {
-    const {getByTestId} = render(<HomePage/>);
-    const linkElement = getByTestId("title1");
-    const linkElement2 = getByTestId("title2");
-    expect(linkElement).toBeInTheDocument();
-    expect(linkElement2).toBeInTheDocument();
-})
-
 it("HomePage - renders Type Dropdown without crashing", () => {
     const {getByTestId} = render(<HomePage/>);
     const linkElement = getByTestId("optionsDropDown");
@@ -37,7 +29,7 @@ it("HomePage - renders Type Dropdown without crashing", () => {
 
 it("HomePage - renders City Dropdown without crashing", () => {
     const {getByTestId} = render(<HomePage/>);
-    const linkElement = getByTestId("cityDropDown");
+    const linkElement = getByTestId("demo-simple-select-id");
     expect(linkElement).toBeInTheDocument();
 })
 
