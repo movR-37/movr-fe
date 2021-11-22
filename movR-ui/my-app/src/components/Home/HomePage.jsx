@@ -2,6 +2,7 @@ import React from "react";
 import HomepageSelection from "../homePageSelection/HomepageSelection";
 import MapComponent from "../Map/MapComponent";
 import Selection from "../selection/Selection";
+import logo from "../../images/movr.png";
 import "./HomePage.css";
 
 export default function HomePage() {
