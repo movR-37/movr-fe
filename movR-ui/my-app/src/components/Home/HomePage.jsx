@@ -1,15 +1,20 @@
 import React from "react";
+import HomepageSelection from "../homePageSelection/HomepageSelection";
+import MapComponent from "../Map/MapComponent";
 import Selection from "../selection/Selection";
-// import InhouseServices from "../../Components/serviceCards/InhouseServices";
-// import FeaturedHalls from "../../Components/featuredHalls/FeaturedHalls";
-import Container from "@material-ui/core/Container";
-// import ViewCities from "../../Components/viewCities/ViewCities";
-// import ViewAll from "../../Components/viewAll/ViewAll";
+import "./HomePage.css";
 
 export default function HomePage() {
   return (
-    <div>
-      <Selection />
+    <div className="homePage-container">
+      <div className="homePage-selection">
+        <div className="homePagecontent">
+          <HomepageSelection />
+        </div>
+      </div>
+      <div className="homePage-map">
+        <MapComponent />
+      </div>
     </div>
   );
 }
