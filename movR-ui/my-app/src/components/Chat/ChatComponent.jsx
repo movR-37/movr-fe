@@ -2,10 +2,12 @@ import { Button, TextField } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import "./ChatComponent.css";
+import fire from "../../config/firebase.config";
 
 export default function ChatComponent() {
   const [message, setMessage] = useState("");
   const [allMsgs, setAllMsgs] = useState([]);
+  const user = fire.auth().currentUser;
   const socket = io("http://localhost:8000", { transports: ["websocket"] });
 
   useEffect(() => {
@@ -16,6 +18,10 @@ export default function ChatComponent() {
   }, []);
 
   socket.on("receive-message", (message) => {
+    // const newMsg = {
+    //   user: user.email,
+    //   message,
+    // };
     setAllMsgs([...allMsgs, message]);
   });
 
@@ -24,8 +30,12 @@ export default function ChatComponent() {
   };
 
   const handleSubmit = () => {
-    socket.emit("send-message", message);
-    setAllMsgs([...allMsgs, message]);
+    const newMsg = {
+      user: user.email,
+      message,
+    };
+    socket.emit("send-message", newMsg);
+    setAllMsgs([...allMsgs, newMsg]);
   };
 
   return (
@@ -33,8 +43,11 @@ export default function ChatComponent() {
       <div className="messageQueue">
         <h1 className="headingComponent">Chat Now!</h1>
         {allMsgs.map((msg, idx) => (
-          <div className="bubble" key={idx}>
-            {msg}
+          <div className="bubble-container">
+            <div className="bubble" key={idx}>
+              {msg.message}
+            </div>
+            <p className="bubble-sender">Sent by: {msg.user}</p>
           </div>
         ))}
       </div>
