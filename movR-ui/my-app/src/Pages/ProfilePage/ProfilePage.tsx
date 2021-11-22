@@ -15,7 +15,7 @@ import { IAboutProfileProps } from "../../components/aboutProfile/AboutProfile";
 import { ClickAwayListener, IconButton, Button } from "@material-ui/core";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import axios from "axios"
-import Modal from '../../components/reviewModal';
+import Form from '../../components/Form.jsx';
 
 export default function ProfilePage() {
 
@@ -116,8 +116,7 @@ export default function ProfilePage() {
           </Dialog>
         ) : undefined}
       </div>
-      <button className="openModalbtn" onClick={() => {setOpenModal(true)}}>open</button>
-              {openModal && <Modal closeModal={setOpenModal}/> } 
+      <Form></Form>
       <Container maxWidth="lg" className="container">
         <div className="hallContainer">
           <ProfileHeader title={headerData.title} noOfReviews={headerData.noOfReviews} rating={headerData.rating} location={headerData.location} />
