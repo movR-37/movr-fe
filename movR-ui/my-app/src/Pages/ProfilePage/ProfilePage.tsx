@@ -15,8 +15,13 @@ import { IAboutProfileProps } from "../../components/aboutProfile/AboutProfile";
 import { ClickAwayListener, IconButton, Button } from "@material-ui/core";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import axios from "axios"
+import { useHistory } from "react-router-dom";
+import fire from "../../config/firebase.config";
 
 export default function ProfilePage() {
+
+  const history = useHistory();
+  const user = fire.auth().currentUser;
 
   const [name, setName] = useState("");
   const [numReviews, setNumReviews] = useState("");
