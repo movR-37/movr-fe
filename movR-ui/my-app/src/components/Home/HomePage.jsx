@@ -9,6 +9,9 @@ export default function HomePage() {
   return (
     <div className="homePage-container">
       <div className="homePage-selection">
+        <div className="logo">
+          <img src={logo} alt="" srcset="" className="logoHome" />
+        </div>
         <div className="homePagecontent">
           <HomepageSelection />
         </div>
