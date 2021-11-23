@@ -70,7 +70,7 @@ function ContactUs() {
           placeholder='Message…'
           required
         />
-        <Button type='submit' variant="contained" endIcon={<SendIcon />}>Submit</Button>
+        <Button data-testid='submitButton' type='submit' variant="contained" endIcon={<SendIcon />}>Submit</Button>
       </Form>
     </div>
     </div>
