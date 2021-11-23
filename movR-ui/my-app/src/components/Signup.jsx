@@ -19,7 +19,7 @@ export default function Signup() {
     const classData = {
         type: "Registration",
         message: "Already have an account? Login here.",
-        route: "./login",
+        route: "./login-user",
         text: "Sign up",
         testid: "buttonSignup"
     };

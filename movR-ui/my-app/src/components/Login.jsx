@@ -18,7 +18,7 @@ export default function Login() {
     const classData = {
         type: "Login",
         message: "Create a new account.",
-        route: "./signup",
+        route: "./signup-user",
         text: "Login",
         testid: "buttonLogin"
     };

@@ -8,6 +8,9 @@ import HomePage from './components/Home/HomePage.jsx'
 import Chat from './components/Chat/Chat';
 import Profile from './Pages/ProfilePage/ProfilePage'
 import ChatComponent from './components/Chat/ChatComponent';
+import LandingPage from './components/LandingPage/LandingPage';
+import LoginMover from "./components/LoginMover";
+import SignupMover from "./components/SignupMover";
 
 function App() {
 
@@ -16,12 +19,15 @@ function App() {
       <header>
         <Router>
           <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            <Route path="/login-user" component={Login} />
+            <Route path="/login-mover" component={LoginMover} />
+            <Route path="/signup-user" component={Signup} />
+            <Route path="/signup-mover" component={SignupMover} />
             <Route path="/:uid/home" exact component={HomePage} />
             <Route path="/:uid/chat" component={ChatComponent} />
+            <Route path="/welcome" component={LandingPage} />
             <Route path="/profile" exact component={Profile} />
-            <Redirect exact from="/" to="/login" />
+            <Redirect exact from="/" to="/welcome" />
           </Switch>
         </Router>
       </header>
