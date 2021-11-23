@@ -8,7 +8,6 @@ function FAQ ({faq, index, toggleFAQ}) {
 			key={index}
 			onClick={() => toggleFAQ(index)}
 		>
-            
 			<div className="faq-question">
 				{faq.question}
 			</div>
