@@ -20,6 +20,8 @@ function RegistrationComp({ formData, classData }) {
     };
   }
 
+
+
   const postUsertoDB = () => {
     axios.post('http://localhost:8000/movers', userObj)
       .then(response => console.log(response));
@@ -47,7 +49,7 @@ function RegistrationComp({ formData, classData }) {
       history.push(`/login-mover`);
 
     } else {
-      history.push(`${user.uid}/home`);
+      history.push(`/profile`);
     }
   };
 

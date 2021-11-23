@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FormControl from "@material-ui/core/FormControl";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import "./Form.css";
 import { useHistory } from "react-router-dom";
 import fire from "../config/firebase.config";
+import axios from "axios";
 
 export default function Form() {
   const [currentSum, setCurrentSum] = useState();
@@ -20,8 +21,25 @@ export default function Form() {
   const [estimatedTime, setEstimatedTime] = useState("");
   const [hourlyRate, setHourlyRate] = useState("");
   const [estimatedDistance, setEstimatedDistance] = useState("");
+  const [moverName, setMoverName] = useState("");
+  const [moverEmail, setMoverEmail] = useState("");
   const history = useHistory();
   const user = fire.auth().currentUser;
+
+
+  useEffect(() => {
+
+    const findMover = async () => {
+      let response = await axios.get('http://localhost:8000/users/619bef5149082a3546e3c00b');
+      console.log(response.data.email);
+
+      const data = response.data;
+      setMoverName(data.name);
+      setMoverEmail(data.moverEmail);
+    }
+
+    findMover();
+  }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -31,6 +49,41 @@ export default function Form() {
       1.67 * estimatedDistance;
     setCurrentSum(parseFloat(val).toFixed(2));
   };
+
+
+  const connectUserToMover = async () => {
+    const connectionObj = {
+      mover: moverEmail,
+      client: user.email
+    }
+    console.log(connectionObj);
+    let response = await axios.post('http://localhost:8000/booking', connectionObj);
+    console.log(response);
+
+  }
+
+  const disconnectUserFromMover = async () => {
+    const connectionObj = {
+      mover: moverEmail,
+      client: user.email
+    }
+    // DELETE UPON CLICK AFTER
+    let response = await axios.post('http://localhost:8000/booking', connectionObj);
+    console.log(response);
+
+  }
+
+  const handleAccept = async (e) => {
+    e.preventDefault();
+    await connectUserToMover();
+    history.push(`/${user.uid}/chat`);
+  }
+
+  const handleCancel = (e) => {
+    disconnectUserFromMover();
+    history.push(`/${user.uid}/home`)
+  }
+
   return (
     <div className="reviewFormContainer">
       <form className="reviewForm-form">
@@ -133,13 +186,13 @@ export default function Form() {
         <Button
           variant="outlined"
           className="gotoChat"
-          onClick={(e) => history.push(`/${user.uid}/chat`)}
+          onClick={(e) => handleAccept(e)}
         >
           Chat
         </Button>
         <Button
           variant="outlined"
-          onClick={(e) => history.push(`/${user.uid}/home`)}
+          onClick={(e) => handleCancel(e)}
         >
           Cancel
         </Button>
