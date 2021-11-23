@@ -8,6 +8,7 @@ import HomePage from './components/Home/HomePage.jsx'
 import Chat from './components/Chat/Chat';
 import Profile from './Pages/ProfilePage/ProfilePage'
 import ChatComponent from './components/Chat/ChatComponent';
+import FaqPage from './Pages/faqPage/faqPage';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/:uid/home" exact component={HomePage} />
             <Route path="/:uid/chat" component={ChatComponent} />
             <Route path="/profile" exact component={Profile} />
+            <Route path="/faq" exact component={FaqPage} />
             <Redirect exact from="/" to="/login" />
           </Switch>
         </Router>
