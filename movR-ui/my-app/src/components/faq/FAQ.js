@@ -3,13 +3,13 @@ import "./FAQ.css"
 
 function FAQ ({faq, index, toggleFAQ}) {
 	return (
-		<div className={"faq " + (faq.open ? 'open' : '')}
+		<div data-testid='masterDiv' className={"faq " + (faq.open ? 'open' : '')}
 			key={index}
 			onClick={() => toggleFAQ(index)}>
-			<div className="faq-question">
+			<div data-testid='questionDiv' className="faq-question">
 				{faq.question}
 			</div>
-			<div className="faq-answer">
+			<div data-testid='answerDiv'className="faq-answer">
 				{faq.answer}
 			</div>
 		</div>
