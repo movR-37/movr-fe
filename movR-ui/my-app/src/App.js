@@ -8,6 +8,7 @@ import HomePage from './components/Home/HomePage.jsx'
 import Chat from './components/Chat/Chat';
 import Profile from './Pages/ProfilePage/ProfilePage'
 import ChatComponent from './components/Chat/ChatComponent';
+import PaymentWrapper from './Pages/Payment/PaymentWrapper';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="/:uid/home" exact component={HomePage} />
             <Route path="/:uid/chat" component={ChatComponent} />
             <Route path="/profile" exact component={Profile} />
+            <Route path="/payment" exact component={PaymentWrapper} />
             <Redirect exact from="/" to="/login" />
           </Switch>
         </Router>
