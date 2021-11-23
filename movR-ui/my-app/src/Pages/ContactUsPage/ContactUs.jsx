@@ -4,6 +4,7 @@ import emailjs from 'emailjs-com';
 import Swal from 'sweetalert2';
 import Button from "@material-ui/core/Button";
 import SendIcon from '@material-ui/icons/Send';
+import './ContactUs.css'
 
 
 function ContactUs() {
@@ -33,6 +34,12 @@ function ContactUs() {
       };
 
     return (
+     <div>
+     <div className="my-header">
+		<header>
+			<h1>Contact Us</h1>
+		</header>
+        </div>
      <div className= "contactMasterDiv">
       <Form onSubmit={handleOnSubmit}>
         <Form.Field
@@ -65,6 +72,7 @@ function ContactUs() {
         />
         <Button type='submit' variant="contained" endIcon={<SendIcon />}>Submit</Button>
       </Form>
+    </div>
     </div>
     )
 }
