@@ -3,11 +3,9 @@ import "./FAQ.css"
 
 function FAQ ({faq, index, toggleFAQ}) {
 	return (
-		<div
-			className={"faq " + (faq.open ? 'open' : '')}
+		<div className={"faq " + (faq.open ? 'open' : '')}
 			key={index}
-			onClick={() => toggleFAQ(index)}
-		>
+			onClick={() => toggleFAQ(index)}>
 			<div className="faq-question">
 				{faq.question}
 			</div>
