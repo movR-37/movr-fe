@@ -4,10 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Form from './components/Form';
+import MoverProfile from './components/MoverProfile/MoverProfile';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MoverProfile />
   </React.StrictMode>,
   document.getElementById('root')
 );
