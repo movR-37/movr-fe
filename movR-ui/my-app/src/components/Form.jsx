@@ -47,7 +47,7 @@ export default function Form() {
               "aria-label": "Time",
             }}
           />
-          <FormHelperText id="outlined-Distance-helper-text">
+          <FormHelperText data-testid = "timeField" id="outlined-Distance-helper-text">
             Time
           </FormHelperText>
         </FormControl>
@@ -64,7 +64,7 @@ export default function Form() {
               "aria-label": "Distance",
             }}
           />
-          <FormHelperText id="outlined-Distance-helper-text">
+          <FormHelperText data-testid = "distanceField" id="outlined-Distance-helper-text">
             Distance
           </FormHelperText>
         </FormControl>
@@ -108,7 +108,7 @@ export default function Form() {
           </RadioGroup>
         </FormControl>
         <br />
-        <Button variant="outlined" onClick={(e) => onSubmit(e)}>
+        <Button aria-label="subButton" variant="outlined" onClick={(e) => onSubmit(e)}>
           Calculate Cost
         </Button>
         {/* <Button size="medium" onClick={(e) => onSubmit(e)}>
