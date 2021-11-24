@@ -3,7 +3,7 @@ import mockFire from '../../config/__mocks__/firebase.config';
 import { act } from 'react-dom/test-utils';
 import { getByPlaceholderText, render, fireEvent, waitForElement, getByTestId } from '@testing-library/react';
 import { useForm } from "react-hook-form";
-import Payment from '../../Pages/Payment/Payment';
+import PaymentWrapper from '../../Pages/Payment/PaymentWrapper';
 jest.mock("react-hook-form");
 jest.mock("../../config/__mocks__/firebase.config");
 
@@ -38,12 +38,12 @@ beforeEach(() => {
 //     expect(linkElement).toBeInTheDocument();
 // })
 
-it("Payment - logs in without crashing", async () => {
+it.only("Payment - logs in without crashing", async () => {
 
     // build mock user auth
     const loginFunction = jest.fn(async () => {});
     await mockFire.auth.mockReturnValue({signInWithEmailAndPassword : loginFunction()} );
-    const { getByTestId} = render(<Login/>);
+    const { getByTestId} = render(<PaymentWrapper/>);
     const linkElement = getByTestId('buttonLogin');
     act(() => {
         /* fire events that update state */
