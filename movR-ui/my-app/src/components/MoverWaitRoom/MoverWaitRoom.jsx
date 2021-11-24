@@ -1,14 +1,16 @@
+import { Button } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import "./MoverWaitRoom.css";
 
-export default function MoverProfile() {
+export default function MoverWaitRoom() {
   const socket = io("http://localhost:8000", { transports: ["websocket"] });
   const [isRequestReceived, setIsRequestReceived] = useState(false);
   const [data, setData] = useState({});
   useEffect(() => {
     socket.on("connect", () => {
-      console.log("Mover is connected!"); // x8WIv7-mJelg7on_ALbx
+      console.log("Mover is connected!");
     });
   }, [socket]);
 
@@ -17,7 +19,7 @@ export default function MoverProfile() {
       "http://localhost:8000/movers/619c37b4f7375af08b530143"
     );
     const connectionObj = {
-      user: data.value,
+      user: data.user,
       mover: mover.name,
     };
     const response = await axios.post(
@@ -41,10 +43,15 @@ export default function MoverProfile() {
   return (
     <div>
       {isRequestReceived ? (
-        <div>
+        <div className="mover-request-div">
           <h3>Request received by: {data.user}</h3>
           <h3>Request is from City: {data.location}</h3>
-          <button onClick={handleAccept}>Accept</button>
+          <Button variant="contained" color="success" onClick={handleAccept}>
+            Accept
+          </Button>
+          <Button variant="outlined" color="error">
+            Decline
+          </Button>
         </div>
       ) : undefined}
     </div>

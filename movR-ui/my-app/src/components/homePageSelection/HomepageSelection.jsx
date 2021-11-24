@@ -13,18 +13,18 @@ import fire from "../../config/firebase.config";
 export default function HomepageSelection() {
   const [socket, setSocket] = React.useState();
   const user = fire.auth().currentUser;
+  const history = useHistory();
   // Update this to take from db
   const data = {
     user: user.email,
     location: "mtl",
   };
 
-  const history = useHistory();
   const handleSubmit = () => {
     const socket = io("http://localhost:8000", { transports: ["websocket"] });
     setSocket(socket);
     socket.on("connect", () => {
-      console.log("Looking for movers"); // x8WIv7-mJelg7on_ALbx
+      console.log("Looking for movers");
       socket.emit("send-request", data);
     });
   };
