@@ -34,14 +34,14 @@ function ContactUs() {
       };
 
     return (
-     <div>
+     <div className='masterContainer'>
      <div className="my-header">
 		<header>
 			<h1>Contact Us</h1>
 		</header>
         </div>
      <div className= "contactMasterDiv">
-      <Form onSubmit={handleOnSubmit}>
+      <Form className="Contact-Form" onSubmit={handleOnSubmit}>
         <Form.Field
           id='form-input-control-email'
           control={Input}
