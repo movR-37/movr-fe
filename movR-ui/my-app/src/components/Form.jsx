@@ -31,11 +31,12 @@ export default function Form() {
 
     const findMover = async () => {
       let response = await axios.get('http://localhost:8000/users/619bef5149082a3546e3c00b');
-      console.log(response.data.email);
+
 
       const data = response.data;
       setMoverName(data.name);
-      setMoverEmail(data.moverEmail);
+      setMoverEmail(data.email);
+
     }
 
     findMover();
@@ -52,35 +53,27 @@ export default function Form() {
 
 
   const connectUserToMover = async () => {
+
     const connectionObj = {
       mover: moverEmail,
-      client: user.email
+      user: user.email,
+      bill: currentSum ? currentSum : 0,
+      completed: false
     }
     console.log(connectionObj);
-    let response = await axios.post('http://localhost:8000/booking', connectionObj);
-    console.log(response);
-
-  }
-
-  const disconnectUserFromMover = async () => {
-    const connectionObj = {
-      mover: moverEmail,
-      client: user.email
-    }
-    // DELETE UPON CLICK AFTER
-    let response = await axios.post('http://localhost:8000/booking', connectionObj);
+    let response = await axios.post('http://localhost:8000/trips', connectionObj);
     console.log(response);
 
   }
 
   const handleAccept = async (e) => {
     e.preventDefault();
-    await connectUserToMover();
+    connectUserToMover();
     history.push(`/${user.uid}/chat`);
   }
 
   const handleCancel = (e) => {
-    disconnectUserFromMover();
+    e.preventDefault();
     history.push(`/${user.uid}/home`)
   }
 

@@ -48,8 +48,10 @@ function RegistrationComp({ formData, classData }) {
     else if (currentPage === 'Registration Mover') {
       history.push(`/login-mover`);
 
-    } else {
+    } else if (currentPage === 'Login Mover') {
       history.push(`/profile`);
+    } else {
+      history.push(`/${user.uid}/home`)
     }
   };
 
