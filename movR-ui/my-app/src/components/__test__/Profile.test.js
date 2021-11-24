@@ -1,5 +1,4 @@
 import React from 'react';
-import mockFire from '../../config/__mocks__/firebase.config';
 import Form from '../../components/Form.jsx';
 import { act } from 'react-dom/test-utils';
 import { getByPlaceholderText, render, fireEvent, waitForElement, getByTestId } from '@testing-library/react';
