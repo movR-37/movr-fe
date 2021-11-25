@@ -15,10 +15,10 @@ export default function ProfileHeader(props: IProfileHeaderProps) {
     return (
         <div>
             <div className="header">
-                <div className="title">
+                <div data-testid= "profileHeader-title" className="title">
                     <Typography variant="h4" style={{ fontWeight: 500 }} >{props.title}</Typography>
                 </div>
-                <div className="subtitle">
+                <div data-testid= "profileHeader-review" className="subtitle">
                     <div className="review-div">
                         <span><FontAwesomeIcon icon={faStar} color="rgb(157,78,221)" size="sm" style={{ marginBottom: 1 }} /></span>
                         <span style={{ fontWeight: 500, fontSize: 16, marginLeft: 2, marginTop: 3, marginRight: 1 }}>{props.rating}</span>
