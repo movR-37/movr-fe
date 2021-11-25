@@ -2,35 +2,41 @@
 
 import React, { useEffect, useState } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
+import axios from 'axios';
 
 function MapLatest() {
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
-    useEffect(() => {
+    const [markers, setMarkers] = useState([])
+
+    async function fetchMovers() {
+        const response = await axios.get('http://localhost:8000/movers/');
+        const { mover } = response.data;
+        const mark = [];
+        // eslint-disable-next-line array-callback-return
+        mover.map((d, idx) => {
+            const userMarker = {
+                id: idx,
+                name: d.name,
+                position: { lat: parseFloat(d.latitude), lng: parseFloat(d.longitude) }
+            }
+            mark.push(userMarker)
+        })
         navigator.geolocation.getCurrentPosition((position) => {
             setLat(position.coords.latitude);
             setLng(position.coords.longitude);
             console.log(lat, lng)
         })
 
-    }, [lat, lng])
+        setMarkers(mark);
+    }
 
-    const markers = [
-        {
-            id: 2,
-            name: "Driver 2",
-            position: { lat: 45.5130, lng: -73.5666 }
-        },
+    useEffect(() => {
 
+        fetchMovers();
 
-        {
-            id: 3,
-            name: "Driver 3",
-            position: { lat: 45.512, lng: -73.5685 }
-        },
-
-    ];
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [markers])
 
     const [activeMarker, setActiveMarker] = useState(null);
 
@@ -43,8 +49,10 @@ function MapLatest() {
 
     const handleOnLoad = (map) => {
         const bounds = new google.maps.LatLngBounds();
-        markers.forEach(({ position }) => bounds.extend(position));
-        // bounds.extend({ lat, lng })
+        markers.forEach(({ position }) => {
+            bounds.extend(position)
+        });
+        bounds.extend({ lat, lng })
         map.fitBounds(bounds);
     };
 
@@ -53,8 +61,7 @@ function MapLatest() {
             onLoad={handleOnLoad}
             onClick={() => setActiveMarker(null)}
             mapContainerStyle={{ width: "100vw", height: "100vh" }}
-            zoom={50}
-            panTo={{ lat, lng }}
+            center={{ lat, lng }}
         >
             {markers.map(({ id, name, position }) => (
                 <Marker
@@ -76,12 +83,12 @@ function MapLatest() {
             ))
             }
             <Marker
-                id={1}
+                id={-1}
                 position={{ lat, lng }}
                 name={"Current Location"}
-                onClick={() => handleActiveMarker(1)}
+                onClick={() => handleActiveMarker(-1)}
             >
-                {activeMarker === 1 ? (
+                {activeMarker === -1 ? (
                     <InfoWindow onCloseClick={() => setActiveMarker(null)}>
                         <div>Current Location</div>
                     </InfoWindow>
