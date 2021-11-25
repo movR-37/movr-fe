@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react"
 import "./Login.css";
 import image from "./icons/login.png";
 import logo from "../../images/movr.png";
 import { useHistory } from "react-router-dom";
 import fire from "../../config/firebase.config";
 import userStatus from "../../UserLoginStatus";
+import axios from "axios"
 
 function RegistrationComp({ formData, classData }) {
   const [errorMessage, setErrorMessage] = useState("");
@@ -12,6 +13,17 @@ function RegistrationComp({ formData, classData }) {
   const [email, setEmail] = useState("");
   const history = useHistory();
   const user = fire.auth().currentUser;
+  let userObj = {};
+  if (user) {
+    userObj = {
+      email: user.email
+    };
+  }
+
+  const postUsertoDB = () => {
+    axios.post('http://localhost:8000/movers', userObj)
+      .then(response => console.log(response));
+  }
 
   const onChange = React.useCallback(e => {
     switch (e.target.name) {
@@ -29,9 +41,12 @@ function RegistrationComp({ formData, classData }) {
 
   const handleSubmission = (currentPage) => {
     if (currentPage === 'Registration') {
-      history.push("/login");
+      history.push("/login-user");
     }
-    else {
+    else if (currentPage === 'Registration Mover') {
+      history.push(`/login-mover`);
+
+    } else {
       history.push(`${user.uid}/home`);
     }
   };
@@ -39,8 +54,16 @@ function RegistrationComp({ formData, classData }) {
   const onSubmit = async () => {
     try {
       setErrorMessage("");
-      if (classData.type === "Registration") {
+      if (classData.type === "Registration Mover") {
         await fire.auth().createUserWithEmailAndPassword(email, password);
+        postUsertoDB(user);
+      } else if (classData.type === "Registration") {
+        await fire.auth().createUserWithEmailAndPassword(email, password);
+      }
+      else if (classData.type === "Login Mover") {
+        await fire.auth().signInWithEmailAndPassword(email, password);
+        userStatus.setStatus(true);
+        console.log(userStatus.getStatus());
       } else {
         await fire.auth().signInWithEmailAndPassword(email, password);
         userStatus.setStatus(true);
