@@ -1,0 +1,46 @@
+.masterContainer {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #EEE;
+    background-image: url("../../components/registration-component/bgs.jpeg");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+  }
+
+.my-header {
+	display: flex;
+	justify-content: left;
+	align-content: left;
+    padding: 75px;
+	background-color: #3c3c3c;
+    border-bottom: 0px solid #56E3B8;
+    opacity: 0.85;
+}
+
+.my-header h1 {
+	color: #EEE;
+	font-size: 28px;
+	font-weight: 700;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 1;
+    left: 1;
+}
+.contactMasterDiv {
+    text-align: center;
+    max-width: 500px;
+    margin: 100px auto;
+}
+
+.Contact-Form {
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 80px;
+    background-color: #FFF;
+    opacity: 0.85;
+  }
+
