@@ -5,10 +5,35 @@ import {
   MenuItem,
   Button,
 } from "@material-ui/core";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import { io } from "socket.io-client";
+import fire from "../../config/firebase.config";
 
 export default function HomepageSelection() {
+  const [socket, setSocket] = React.useState();
+  const user = fire.auth().currentUser;
   const history = useHistory();
+  // Update this to take from db
+  const data = {
+    user: user ? user.email : "",
+    location: "mtl",
+  };
+
+  const handleSubmit = () => {
+    const socket = io("http://localhost:8000", { transports: ["websocket"] });
+    setSocket(socket);
+    socket.on("connect", () => {
+      console.log("Looking for movers");
+      socket.emit("send-request", data);
+    });
+  };
+  if (socket) {
+    socket.on("ack-accept", (value) => {
+      console.log(value);
+    });
+  }
+
   return (
     <div className="homePageSelectionContainer">
       <FormControl fullWidth>
@@ -17,7 +42,7 @@ export default function HomepageSelection() {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Select Location"
-          data-testid= "demo-simple-select-id"
+          data-testid="demo-simple-select-id"
         >
           <MenuItem value={"Montreal"}>Montreal</MenuItem>
         </Select>
@@ -33,7 +58,7 @@ export default function HomepageSelection() {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           label="Select Service"
-          data-testid= "optionsDropDown"
+          data-testid="optionsDropDown"
         >
           <MenuItem value={"Mover"}>Mover</MenuItem>
           <MenuItem value={"Driver"}>Driver</MenuItem>
@@ -49,7 +74,8 @@ export default function HomepageSelection() {
         variant="contained"
         color="secondary"
         className="get-started"
-        onClick={() => history.push("/profile")}
+        onClick={handleSubmit}
+      // onClick={() => history.push("/profile")}
       >
         Get Started
       </Button>

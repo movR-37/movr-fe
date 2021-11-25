@@ -49,7 +49,7 @@ function RegistrationComp({ formData, classData }) {
       history.push(`/login-mover`);
 
     } else if (currentPage === 'Login Mover') {
-      history.push(`/profile`);
+      history.push(`/mover`);
     } else {
       history.push(`/${user.uid}/home`)
     }

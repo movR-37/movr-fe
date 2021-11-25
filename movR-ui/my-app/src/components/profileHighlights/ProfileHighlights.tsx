@@ -13,7 +13,7 @@ export interface IProfileHighlightsProps {
 function ProfileHighlights({ profileType, profileIconUrl, highlightItems }: IProfileHighlightsProps) {
     return (
         <div className="highlights-container">
-            <div className="highlights-header">
+            <div data-testid="highlightsHeader"className="highlights-header">
                 <div className="title">
                     <span><Typography className="title-text" variant="h4">{profileType} Highlights</Typography></span>
                 </div>

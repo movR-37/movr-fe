@@ -50,8 +50,8 @@ export default function ProfileCollage({ mover }: IMover) {
     // const smallBottomRight = "https://capstone-images-458.s3.ca-central-1.amazonaws.com/6.jpeg";
 
     return (
-        <div>
-            <Grid container className="gridContainer" onClick={handleClick} >
+        <div data-testid="collage-masterdiv">
+            <Grid data-testid="collage-masterGrid" container className="gridContainer" onClick={handleClick} >
 
                 <Grid item={true} xs={6}>
                     <div className="bigImage">

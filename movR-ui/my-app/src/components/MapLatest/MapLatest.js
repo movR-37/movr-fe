@@ -2,55 +2,41 @@
 
 import React, { useEffect, useState } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
-
-
+import axios from 'axios';
 
 function MapLatest() {
+    const [lat, setLat] = useState(0);
+    const [lng, setLng] = useState(0);
+    const [markers, setMarkers] = useState([])
 
-    const [latitude, setLatitude] = useState();
-    const [longitude, setLongitude] = useState();
+    async function fetchMovers() {
+        const response = await axios.get('http://localhost:8000/movers/');
+        const { mover } = response.data;
+        const mark = [];
+        // eslint-disable-next-line array-callback-return
+        mover.map((d, idx) => {
+            const userMarker = {
+                id: idx,
+                name: d.name,
+                position: { lat: parseFloat(d.latitude), lng: parseFloat(d.longitude) }
+            }
+            mark.push(userMarker)
+        })
+        navigator.geolocation.getCurrentPosition((position) => {
+            setLat(position.coords.latitude);
+            setLng(position.coords.longitude);
+            console.log(lat, lng)
+        })
+
+        setMarkers(mark);
+    }
 
     useEffect(() => {
 
-        getCurrentLocation();
-        return () => {
-            setLatitude(); // This worked for me
-            setLongitude();
-        };
-        console.log(latitude);
-    }, [])
+        fetchMovers();
 
-
-    const getCurrentLocation = () => {
-
-        navigator.geolocation.getCurrentPosition((position) => {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude);
-        })
-    }
-
-    const markers = [
-        {
-            id: 1,
-            name: "Driver 1",
-            position: { lat: latitude, lng: longitude }
-        }
-
-        // {
-        //     id: 2,
-        //     name: "Driver 2",
-        //     position: { lat: 45.5017, lng: -73.5666 }
-        // },
-
-
-        // {
-        //     id: 3,
-        //     name: "Driver 3",
-        //     position: { lat: 45.5017, lng: -73.5685 }
-        // },
-
-    ];
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [markers])
 
     const [activeMarker, setActiveMarker] = useState(null);
 
@@ -63,7 +49,10 @@ function MapLatest() {
 
     const handleOnLoad = (map) => {
         const bounds = new google.maps.LatLngBounds();
-        markers.forEach(({ position }) => bounds.extend(position));
+        markers.forEach(({ position }) => {
+            bounds.extend(position)
+        });
+        bounds.extend({ lat, lng })
         map.fitBounds(bounds);
     };
 
@@ -72,12 +61,18 @@ function MapLatest() {
             onLoad={handleOnLoad}
             onClick={() => setActiveMarker(null)}
             mapContainerStyle={{ width: "100vw", height: "100vh" }}
+            center={{ lat, lng }}
         >
             {markers.map(({ id, name, position }) => (
                 <Marker
                     key={id}
                     position={position}
                     onClick={() => handleActiveMarker(id)}
+                    icon={{
+                        url: "https://img.icons8.com/external-konkapp-outline-color-konkapp/64/000000/external-truck-transportation-konkapp-outline-color-konkapp.png",
+                        anchor: new google.maps.Point(position.lat, position.lng),
+                        scaledSize: new google.maps.Size(75, 75)
+                    }}
                 >
                     {activeMarker === id ? (
                         <InfoWindow onCloseClick={() => setActiveMarker(null)}>
@@ -85,8 +80,21 @@ function MapLatest() {
                         </InfoWindow>
                     ) : null}
                 </Marker>
-            ))}
-        </GoogleMap>
+            ))
+            }
+            <Marker
+                id={-1}
+                position={{ lat, lng }}
+                name={"Current Location"}
+                onClick={() => handleActiveMarker(-1)}
+            >
+                {activeMarker === -1 ? (
+                    <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                        <div>Current Location</div>
+                    </InfoWindow>
+                ) : null}
+            </Marker>
+        </GoogleMap >
     );
 }
 
