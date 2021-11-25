@@ -2,17 +2,24 @@ import { Button } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import fire from "../../config/firebase.config";
 import "./MoverWaitRoom.css";
 
 export default function MoverWaitRoom() {
   const socket = io("http://localhost:8000", { transports: ["websocket"] });
   const [isRequestReceived, setIsRequestReceived] = useState(false);
   const [data, setData] = useState({});
+  const { email } = fire.auth().currentUser;
+
   useEffect(() => {
     socket.on("connect", () => {
       console.log("Mover is connected!");
     });
   }, [socket]);
+
+  const handleCancel = async () => {
+    setIsRequestReceived(false);
+  };
 
   const handleAccept = async () => {
     const mover = await axios.get(
@@ -49,7 +56,7 @@ export default function MoverWaitRoom() {
           <Button variant="contained" color="success" onClick={handleAccept}>
             Accept
           </Button>
-          <Button variant="outlined" color="error">
+          <Button variant="outlined" color="error" onClick={handleCancel}>
             Decline
           </Button>
         </div>
