@@ -2,10 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
+import axios from 'axios';
 
 function MapLatest() {
     const [lat, setLat] = useState(0);
     const [lng, setLng] = useState(0);
+    const [moverLat, setMoverLat] = useState(0);
+    const [moverLong, setMoverLong] = useState(0);
+    const [moverName, setMoverName] = useState("");
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
             setLat(position.coords.latitude);
@@ -13,21 +17,27 @@ function MapLatest() {
             console.log(lat, lng)
         })
 
-    }, [lat, lng])
+        async function fetchUser() {
+            const response = await axios.get('http://localhost:8000/movers/619eddabff6afc76c61df902');
+            const data = response.data;
+            setMoverLat(data.latitude);
+            setMoverLong(data.longitude);
+            setMoverName(data.name);
+        }
+
+        fetchUser();
+
+
+    }, [lat, lng, moverLat, moverLong])
+
 
     const markers = [
         {
             id: 2,
-            name: "Driver 2",
-            position: { lat: 45.5130, lng: -73.5666 }
+            name: moverName,
+            position: { lat: moverLat, lng: moverLong }
         },
 
-
-        {
-            id: 3,
-            name: "Driver 3",
-            position: { lat: 45.512, lng: -73.5685 }
-        },
 
     ];
 

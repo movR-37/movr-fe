@@ -35,7 +35,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await axios.get('http://localhost:8000/users/619bef5149082a3546e3c00b');
+      const response = await axios.get('http://localhost:8000/movers/619eddabff6afc76c61df902');
       const data = response.data;
       setName(data.name);
       setNumReviews(data.noOfReviews);
