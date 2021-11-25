@@ -31,11 +31,12 @@ export default function ProfilePage() {
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
   const [about, setAbout] = useState("");
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
+  const [userData, setUserData] = useState();
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await axios.get('http://localhost:8000/users/619bef5149082a3546e3c00b');
+      const response = await axios.get('http://localhost:8000/movers/619eddabff6afc76c61df902');
       const data = response.data;
       setName(data.name);
       setNumReviews(data.noOfReviews);
@@ -46,6 +47,7 @@ export default function ProfilePage() {
       setSubtitle_3(data.subtitle_3);
       setProfileType(data.profileType);
       setAbout(data.about);
+      setUserData(data);
     }
 
     fetchUser();
@@ -127,6 +129,9 @@ export default function ProfilePage() {
             </div>
             <div className="review-component">
               <Form />
+              {/* <Button variant="contained" color="secondary" className="modalButton" onClick={handleClick}>
+                Accept
+              </Button> */}
             </div>
           </div>
 

@@ -11,20 +11,20 @@ export default function LandingPage() {
 
     return (
         <div className="limiter">
-            <div className="container-landing100">
+            <div data-testid='landingMaster' className="container-landing100">
                 <div className="wrap-landing100">
 
                     <div className="landing100-pic">
                         <button>
                             <h1 className="landing_txt1">I'm a client!</h1>
-                            <img src={userLogo} alt="IMG" onClick={() => history.push('/login-user')} className="thumb" />
+                            <img data-testid='userImg' src={userLogo} alt="IMG" onClick={() => history.push('/login-user')} className="thumb" />
                         </button>
                     </div>
 
                     <div className="landing100-pic">
                         <button>
                             <h1 className="landing_txt1">I'm a mover!</h1>
-                            <img src={moverLogo} alt="IMG" onClick={() => history.push('/login-mover')} className="thumb" />
+                            <img data-testid='moverImg' src={moverLogo} alt="IMG" onClick={() => history.push('/login-mover')} className="thumb" />
                         </button>
                     </div>
                 </div>
