@@ -2,20 +2,27 @@ import React, { useState } from 'react'
 import userLogo from "../../images/user.png";
 import moverLogo from "../../images/mover.png";
 import './MoverProfile.css';
+import fire from "../../config/firebase.config"
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 
 export default function MoverProfile() {
 
     const [counter, setCounter] = useState(0);
+    const user = fire.auth().currentUser;
+    const history = useHistory();
 
-    const addInputField = () => {
-        return (
-            `<input
-            className="input100"
-            placeHolder="A link to your image"
-        />`
-        )
+    const handleSave = () => {
+        // Post images, name, location, and about you
+        history.push('/profile')
     }
+
+    const handleCancel = () => {
+        // Go to waiting room
+        history.push('/profile')
+    }
+
 
     return (
         <div className="limiter">
@@ -43,6 +50,13 @@ export default function MoverProfile() {
                                 <input
                                     className="input100"
                                     placeHolder="About you.."
+                                />
+                            </div>
+
+                            <div className="wrap-input100 validate-input">
+                                <input
+                                    className="input100"
+                                    placeHolder="Moving Capacity.."
                                 />
                             </div>
 
@@ -91,10 +105,10 @@ export default function MoverProfile() {
                                 </div>
                             </div>
                             <div className="container-login100-form-btn">
-                                <button data-testid='infoButton' className="login100-form-btn" style={{ backgroundColor: '#800080' }}>SAVE</button>
+                                <button data-testid='infoButton' onClick={() => handleSave()} className="login100-form-btn" style={{ backgroundColor: '#800080' }}>SAVE</button>
                             </div>
                             <div className="container-login100-form-btn">
-                                <button data-testid='delButton' className="login100-form-btn" style={{ backgroundColor: '#8B0000' }}>CANCEL</button>
+                                <button data-testid='delButton' onClick={() => handleCancel()} className="login100-form-btn" style={{ backgroundColor: '#8B0000' }}>CANCEL</button>
                             </div>
                         </div>
                     </div>

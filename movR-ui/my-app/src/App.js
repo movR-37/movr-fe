@@ -11,6 +11,7 @@ import ChatComponent from './components/Chat/ChatComponent';
 import LandingPage from './components/LandingPage/LandingPage';
 import LoginMover from "./components/LoginMover";
 import SignupMover from "./components/SignupMover";
+import MoverProfile from './components/MoverProfile/MoverProfile';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/:uid/chat" component={ChatComponent} />
             <Route path="/welcome" component={LandingPage} />
             <Route path="/profile" exact component={Profile} />
+            <Route path="/add-profile" exact component={MoverProfile} />
             <Redirect exact from="/" to="/welcome" />
           </Switch>
         </Router>
