@@ -15,10 +15,12 @@ export default function HomepageSelection() {
   const user = fire.auth().currentUser;
   const history = useHistory();
 
+  const [location, setActiveLocation] = React.useState();
+
   const handleSubmit = () => {
     const data = {
       user: user ? user.email : "",
-      location: "mtl",
+      location: location || "mtl",
     };
     const socket = io("http://localhost:8000", { transports: ["websocket"] });
     setSocket(socket);
@@ -44,7 +46,12 @@ export default function HomepageSelection() {
           label="Select Location"
           data-testid="demo-simple-select-id"
         >
-          <MenuItem value={"Montreal"}>Montreal</MenuItem>
+          <MenuItem
+            value={"Montreal"}
+            onClick={() => setActiveLocation("Montreal")}
+          >
+            Montreal
+          </MenuItem>
         </Select>
       </FormControl>
 
