@@ -8,6 +8,7 @@ import HomePage from './components/Home/HomePage.jsx'
 import Chat from './components/Chat/Chat';
 import Profile from './Pages/ProfilePage/ProfilePage'
 import ChatComponent from './components/Chat/ChatComponent';
+import PaymentWrapper from './Pages/Payment/PaymentWrapper';
 import LandingPage from './components/LandingPage/LandingPage';
 import LoginMover from "./components/LoginMover";
 import SignupMover from "./components/SignupMover";
@@ -28,12 +29,13 @@ function App() {
             <Route path="/:uid/chat" component={ChatComponent} />
             <Route path="/welcome" component={LandingPage} />
             <Route path="/profile" exact component={Profile} />
+            <Route path="/payment" exact component={PaymentWrapper} />
             <Route path="/contactus" exact component={ContactUs} />
             <Redirect exact from="/" to="/welcome" />
-          </Switch>
-        </Router>
-      </header>
-    </div>
+          </Switch >
+        </Router >
+      </header >
+    </div >
   );
 }
 
