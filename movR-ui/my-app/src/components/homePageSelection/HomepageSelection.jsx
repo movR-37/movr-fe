@@ -16,7 +16,7 @@ export default function HomepageSelection() {
   const history = useHistory();
   // Update this to take from db
   const data = {
-    user: user.email,
+    user: user.email ? user.email : "",
     location: "mtl",
   };
 

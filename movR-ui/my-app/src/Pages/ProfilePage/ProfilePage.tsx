@@ -53,7 +53,7 @@ export default function ProfilePage() {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
-  const [images, setImages] = useState<String[]>([]);
+  const [images, setImages] = useState<string[]>([]);
   const [about, setAbout] = useState("");
 
   useEffect(() => {
@@ -62,6 +62,7 @@ export default function ProfilePage() {
       const response = await axios.get(`http://localhost:8000/movers?email=${email}`);
       const responseData: Partial<IMover[]> = response.data.mover;
       const data = responseData.find((d) => d?.email === email);
+      console.log(data)
 
       setName(data!.name);
       setNumReviews(data!.noOfReviews);
@@ -73,6 +74,7 @@ export default function ProfilePage() {
       setProfileType(data!.profileType);
       setAbout(data!.about);
       setImages(data!.images)
+      console.log(images);
     }
 
     fetchUser(mover);
@@ -126,7 +128,7 @@ export default function ProfilePage() {
         <div className="hallContainer">
           <ProfileHeader title={headerData.title} noOfReviews={headerData.noOfReviews} rating={headerData.rating} location={headerData.location} />
 
-          <ProfileCollage />
+          <ProfileCollage profileImages={images} />
           <div className="temp">
             <div className="highlights-component">
               <ProfileHighlights
