@@ -30,7 +30,8 @@ export default function HomepageSelection() {
   };
   if (socket) {
     socket.on("ack-accept", (value) => {
-      console.log(value);
+      console.log("Value received by ack-received", value);
+      history.push("/profile", { value });
     });
   }
 

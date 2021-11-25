@@ -25,7 +25,7 @@ function MapLatest() {
         navigator.geolocation.getCurrentPosition((position) => {
             setLat(position.coords.latitude);
             setLng(position.coords.longitude);
-            console.log(lat, lng)
+            // console.log(lat, lng)
         })
 
         setMarkers(mark);
