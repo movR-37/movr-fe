@@ -20,7 +20,13 @@ export default function HomepageSelection() {
     location: "mtl",
   };
 
+  const [location, setActiveLocation] = React.useState();
+
   const handleSubmit = () => {
+    const data = {
+      user: user ? user.email : "",
+      location: location || "mtl",
+    };
     const socket = io("http://localhost:8000", { transports: ["websocket"] });
     setSocket(socket);
     socket.on("connect", () => {
@@ -30,7 +36,8 @@ export default function HomepageSelection() {
   };
   if (socket) {
     socket.on("ack-accept", (value) => {
-      console.log(value);
+      console.log("Value received by ack-received", value);
+      history.push("/profile", { value });
     });
   }
 
@@ -44,7 +51,12 @@ export default function HomepageSelection() {
           label="Select Location"
           data-testid="demo-simple-select-id"
         >
-          <MenuItem value={"Montreal"}>Montreal</MenuItem>
+          <MenuItem
+            value={"Montreal"}
+            onClick={() => setActiveLocation("Montreal")}
+          >
+            Montreal
+          </MenuItem>
         </Select>
       </FormControl>
 

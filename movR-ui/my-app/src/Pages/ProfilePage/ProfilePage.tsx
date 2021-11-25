@@ -20,9 +20,33 @@ import fire from "../../config/firebase.config";
 import Form from '../../components/Form.jsx';
 import { SettingsBackupRestoreOutlined } from "@material-ui/icons";
 import { IMover } from "../../components/collage/ProfileCollage";
+import { useLocation } from 'react-router-dom';
+
+interface LocationStates {
+  value: {
+    mover: string
+  }
+}
+
+interface IMover {
+  name: string;
+  email: string;
+  noOfReviews: string;
+  rating: string;
+  latitude: Number;
+  longitude: Number;
+  images: string[];
+  location: string;
+  address: string;
+  subtitle_2: string;
+  subtitle_3: string;
+  profileType: string;
+  about: string;
+}
 
 export default function ProfilePage({ mover }: IMover) {
 
+  const { state } = useLocation<LocationStates>();
   const [name, setName] = useState("");
   const [numReviews, setNumReviews] = useState("");
   const [rating, setRating] = useState("");
@@ -31,28 +55,32 @@ export default function ProfilePage({ mover }: IMover) {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
+  const [images, setImages] = useState<string[]>([]);
   const [about, setAbout] = useState("");
-  const [openModal, setOpenModal] = useState(false);
-  const [userData, setUserData] = useState();
 
   useEffect(() => {
-    async function fetchUser() {
-      const response = await axios.get('http://localhost:8000/movers/619eddabff6afc76c61df902');
-      const data = response.data;
-      setName(data.name);
-      setNumReviews(data.noOfReviews);
-      setRating(data.rating);
-      setLocation(data.location);
-      setAddress(data.address);
-      setSubtitle_2(data.subtitle_2);
-      setSubtitle_3(data.subtitle_3);
-      setProfileType(data.profileType);
-      setAbout(data.about);
-      setUserData(data);
+    const { mover } = state.value;
+    async function fetchUser(email: string) {
+      const response = await axios.get(`http://localhost:8000/movers?email=${email}`);
+      const responseData: Partial<IMover[]> = response.data.mover;
+      const data = responseData.find((d) => d?.email === email);
+      console.log(data)
+
+      setName(data!.name);
+      setNumReviews(data!.noOfReviews);
+      setRating(data!.rating);
+      setLocation(data!.location);
+      setAddress(data!.address);
+      setSubtitle_2(data!.subtitle_2);
+      setSubtitle_3(data!.subtitle_3);
+      setProfileType(data!.profileType);
+      setAbout(data!.about);
+      setImages(data!.images)
+      console.log(images);
     }
 
-    fetchUser();
-  }, []);
+    fetchUser(mover);
+  }, [state.value]);
 
   let headerData: IProfileHeaderProps = {
     title: name,
@@ -98,26 +126,11 @@ export default function ProfilePage({ mover }: IMover) {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <div className="footer-reservation">
-        <Button variant="contained" color="secondary" className="modalButton" onClick={handleClick}>
-          Check Availability & Dates
-        </Button>
-        {open ? (
-          <Dialog fullScreen open={open} onClose={handleClose}>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-              <HighlightOffIcon />
-            </IconButton>
-            <div className="reservation">
-              <BookingReservation />
-            </div>
-          </Dialog>
-        ) : undefined}
-      </div>
       <Container maxWidth="lg" className="container">
         <div className="hallContainer">
           <ProfileHeader title={headerData.title} noOfReviews={headerData.noOfReviews} rating={headerData.rating} location={headerData.location} />
 
-          <ProfileCollage mover={mover} />
+          <ProfileCollage profileImages={images} />
           <div className="temp">
             <div className="highlights-component">
               <ProfileHighlights

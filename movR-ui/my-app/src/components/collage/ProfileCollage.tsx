@@ -5,49 +5,32 @@ import Modal from "./Modal";
 import { IModalProps } from './Modal';
 import axios from "axios";
 
-
-export interface IMover {
-    mover: string
+interface IProfileCollage {
+    profileImages: string[]
 }
-export default function ProfileCollage({ mover }: IMover) {
+
+export default function ProfileCollage({ profileImages }: IProfileCollage) {
     const [openModal, setOpenModal] = useState(false);
     const handleClick = () => setOpenModal(true);
-    const [gotImages, setGotImages] = useState([]);
+    // const images: IModalProps["images"] = [
+    //     "1.jpeg",
+    //     "2.jpeg",
+    //     "3.jpeg",
+    //     "4.jpeg",
+    // ]
+    const images: IModalProps["images"] = profileImages
 
-    const images: IModalProps["images"] = [
-        "https://capstone-images-458.s3.ca-central-1.amazonaws.com/1.jpeg",
-        "https://capstone-images-458.s3.ca-central-1.amazonaws.com/2.jpeg",
-        "https://capstone-images-458.s3.ca-central-1.amazonaws.com/3.jpeg",
-        "https://capstone-images-458.s3.ca-central-1.amazonaws.com/4.jpeg",
-    ]
+    // const bigImage = "1.jpeg";
+    // const smallUpperLeft = "3.jpeg";
+    // const smallUpperRight = "2.jpeg";
+    // const smallBottomLeft = "4.jpeg";
+    // const smallBottomRight = "6.jpeg";
 
-    const moverObj = {
-        data: {
-            email: mover
-        }
-    }
-
-    useEffect(() => {
-        const fetchImages = async () => {
-            const response = await axios.get(`http://localhost:8000/movers`, moverObj);
-            const { images } = response.data;
-            setGotImages(images);
-        }
-
-        fetchImages();
-    }, [images])
-
-    const bigImage = gotImages[0];
-    const smallUpperLeft = gotImages[1];
-    const smallUpperRight = gotImages[2];
-    const smallBottomLeft = gotImages[3];
-    const smallBottomRight = gotImages[4];
-
-    // const bigImage = "https://capstone-images-458.s3.ca-central-1.amazonaws.com/1.jpeg";
-    // const smallUpperLeft = "https://capstone-images-458.s3.ca-central-1.amazonaws.com/3.jpeg";
-    // const smallUpperRight = "https://capstone-images-458.s3.ca-central-1.amazonaws.com/2.jpeg";
-    // const smallBottomLeft = "https://capstone-images-458.s3.ca-central-1.amazonaws.com/4.jpeg";
-    // const smallBottomRight = "https://capstone-images-458.s3.ca-central-1.amazonaws.com/6.jpeg";
+    const bigImage = profileImages[0];
+    const smallUpperLeft = profileImages[1];
+    const smallUpperRight = profileImages[2];
+    const smallBottomLeft = profileImages[3];
+    const smallBottomRight = profileImages[4];
 
     return (
         <div data-testid="collage-masterdiv">

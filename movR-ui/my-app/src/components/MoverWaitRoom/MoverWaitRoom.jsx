@@ -8,6 +8,7 @@ import "./MoverWaitRoom.css";
 export default function MoverWaitRoom() {
   const socket = io("http://localhost:8000", { transports: ["websocket"] });
   const [isRequestReceived, setIsRequestReceived] = useState(false);
+  const [isRequestAccepted, setRequestAccepted] = useState(false);
   const [data, setData] = useState({});
   const { email } = fire.auth().currentUser;
 
@@ -22,27 +23,29 @@ export default function MoverWaitRoom() {
   };
 
   const handleAccept = async () => {
-    const mover = await axios.get(
-      "http://localhost:8000/movers/619c37b4f7375af08b530143"
-    );
+    console.log("email mover", email);
     const connectionObj = {
       user: data.user,
-      mover: mover.name,
+      mover: email,
     };
     const response = await axios.post(
       "http://localhost:8000/trips",
       connectionObj
     );
+    const { mover } = response.data;
 
     socket.emit("accept-request", {
-      response,
-      message: "Request Accepted by Mover!",
+      mover,
     });
 
     console.log("handling submit for mover");
+
+    setIsRequestReceived(false);
+    setRequestAccepted(true);
   };
 
   socket.on("receive-request", (value) => {
+    setRequestAccepted(false);
     setIsRequestReceived(true);
     setData({ ...value });
     console.log("request is received by the mover!", value);
@@ -53,12 +56,17 @@ export default function MoverWaitRoom() {
         <div className="mover-request-div">
           <h3>Request received by: {data.user}</h3>
           <h3>Request is from City: {data.location}</h3>
-          <Button variant="contained" color="success" onClick={handleAccept}>
+          <Button variant="contained" onClick={handleAccept}>
             Accept
           </Button>
-          <Button variant="outlined" color="error" onClick={handleCancel}>
+          <Button variant="outlined" onClick={handleCancel}>
             Decline
           </Button>
+        </div>
+      ) : undefined}
+      {isRequestAccepted ? (
+        <div className="mover-request-div">
+          <h3>Request Accepted!</h3>
         </div>
       ) : undefined}
     </div>
