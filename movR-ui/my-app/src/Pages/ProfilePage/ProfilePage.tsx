@@ -19,8 +19,9 @@ import { useHistory } from "react-router-dom";
 import fire from "../../config/firebase.config";
 import Form from '../../components/Form.jsx';
 import { SettingsBackupRestoreOutlined } from "@material-ui/icons";
+import { IMover } from "../../components/collage/ProfileCollage";
 
-export default function ProfilePage() {
+export default function ProfilePage({ mover }: IMover) {
 
   const [name, setName] = useState("");
   const [numReviews, setNumReviews] = useState("");
@@ -114,7 +115,7 @@ export default function ProfilePage() {
         <div className="hallContainer">
           <ProfileHeader title={headerData.title} noOfReviews={headerData.noOfReviews} rating={headerData.rating} location={headerData.location} />
 
-          <ProfileCollage />
+          <ProfileCollage mover={mover} />
           <div className="temp">
             <div className="highlights-component">
               <ProfileHighlights

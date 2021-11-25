@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import userLogo from "../../images/user.png";
 import moverLogo from "../../images/mover.png";
 import './MoverProfile.css';
@@ -6,6 +6,16 @@ import './MoverProfile.css';
 
 export default function MoverProfile() {
 
+    const [counter, setCounter] = useState(0);
+
+    const addInputField = () => {
+        return (
+            `<input
+            className="input100"
+            placeHolder="A link to your image"
+        />`
+        )
+    }
 
     return (
         <div className="limiter">
@@ -37,31 +47,6 @@ export default function MoverProfile() {
                             </div>
 
                             <div>
-
-                                <div className="wrap-input100 validate-input">
-
-                                    <input
-                                        className="input100"
-                                        placeHolder="A link to your image"
-                                    />
-
-                                </div>
-                                <div className="wrap-input100 validate-input">
-
-                                    <input
-                                        className="input100"
-                                        placeHolder="A link to your image"
-                                    />
-
-                                </div>
-                                <div className="wrap-input100 validate-input">
-
-                                    <input
-                                        className="input100"
-                                        placeHolder="A link to your image"
-                                    />
-
-                                </div>
                                 <div className="wrap-input100 validate-input">
 
                                     <input
@@ -79,6 +64,31 @@ export default function MoverProfile() {
 
                                 </div>
 
+                                <div className="wrap-input100 validate-input">
+
+                                    <input
+                                        className="input100"
+                                        placeHolder="A link to your image"
+                                    />
+
+                                </div>
+                                <div className="wrap-input100 validate-input">
+
+                                    <input
+                                        className="input100"
+                                        placeHolder="A link to your image"
+                                    />
+
+                                </div>
+
+                                <div className="wrap-input100 validate-input">
+
+                                    <input
+                                        className="input100"
+                                        placeHolder="A link to your image"
+                                    />
+
+                                </div>
                             </div>
                             <div className="container-login100-form-btn">
                                 <button data-testid='infoButton' className="login100-form-btn" style={{ backgroundColor: '#800080' }}>SAVE</button>

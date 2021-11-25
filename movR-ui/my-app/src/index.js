@@ -8,7 +8,7 @@ import MoverProfile from './components/MoverProfile/MoverProfile';
 
 ReactDOM.render(
   <React.StrictMode>
-    <MoverProfile />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
