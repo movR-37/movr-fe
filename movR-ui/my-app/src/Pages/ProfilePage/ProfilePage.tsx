@@ -114,7 +114,7 @@ export default function ProfilePage() {
   const aboutBody = about;
 
   const aboutData: IAboutProfileProps = {
-    profileType: "Venue",
+    profileType: "Mover",
     aboutBody
   };
 

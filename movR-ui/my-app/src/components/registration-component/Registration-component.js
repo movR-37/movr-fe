@@ -22,8 +22,8 @@ function RegistrationComp({ formData, classData }) {
 
 
 
-  const postUsertoDB = () => {
-    axios.post('http://localhost:8000/movers', userObj)
+  const postUsertoDB = (email) => {
+    axios.post('http://localhost:8000/movers', { email })
       .then(response => console.log(response));
   }
 
@@ -49,7 +49,7 @@ function RegistrationComp({ formData, classData }) {
       history.push(`/login-mover`);
 
     } else if (currentPage === 'Login Mover') {
-      history.push(`/mover`);
+      history.push(`/add-profile`);
     } else {
       history.push(`/${user.uid}/home`)
     }
@@ -60,7 +60,7 @@ function RegistrationComp({ formData, classData }) {
       setErrorMessage("");
       if (classData.type === "Registration Mover") {
         await fire.auth().createUserWithEmailAndPassword(email, password);
-        postUsertoDB(user);
+        postUsertoDB(email);
       } else if (classData.type === "Registration") {
         await fire.auth().createUserWithEmailAndPassword(email, password);
       }
