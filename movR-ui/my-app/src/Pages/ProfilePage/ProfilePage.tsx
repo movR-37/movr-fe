@@ -31,7 +31,8 @@ export default function ProfilePage() {
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
   const [about, setAbout] = useState("");
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
+  const [userData, setUserData] = useState();
 
   useEffect(() => {
     async function fetchUser() {
@@ -46,6 +47,7 @@ export default function ProfilePage() {
       setSubtitle_3(data.subtitle_3);
       setProfileType(data.profileType);
       setAbout(data.about);
+      setUserData(data);
     }
 
     fetchUser();
@@ -127,6 +129,9 @@ export default function ProfilePage() {
             </div>
             <div className="review-component">
               <Form />
+              {/* <Button variant="contained" color="secondary" className="modalButton" onClick={handleClick}>
+                Accept
+              </Button> */}
             </div>
           </div>
 

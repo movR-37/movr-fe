@@ -4,6 +4,7 @@ import MapComponent from "../Map/MapComponent";
 import Selection from "../selection/Selection";
 import logo from "../../images/movr.png";
 import "./HomePage.css";
+import MapWrapper from "../MapLatest/MapWrapper";
 
 export default function HomePage() {
   return (
@@ -17,7 +18,7 @@ export default function HomePage() {
         </div>
       </div>
       <div className="homePage-map">
-        <MapComponent />
+        <MapWrapper />
       </div>
     </div>
   );

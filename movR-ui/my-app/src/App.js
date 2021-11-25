@@ -12,6 +12,7 @@ import PaymentWrapper from './Pages/Payment/PaymentWrapper';
 import LandingPage from './components/LandingPage/LandingPage';
 import LoginMover from "./components/LoginMover";
 import SignupMover from "./components/SignupMover";
+import MoverWaitRoom from './components/MoverWaitRoom/MoverWaitRoom';
 import ContactUs from './Pages/ContactUsPage/ContactUs';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/:uid/chat" component={ChatComponent} />
             <Route path="/welcome" component={LandingPage} />
             <Route path="/profile" exact component={Profile} />
+            <Route path="/mover" exact component={MoverWaitRoom} />
             <Route path="/payment" exact component={PaymentWrapper} />
             <Route path="/contactus" exact component={ContactUs} />
             <Redirect exact from="/" to="/welcome" />
