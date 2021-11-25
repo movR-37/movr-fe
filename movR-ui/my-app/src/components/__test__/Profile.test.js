@@ -1,9 +1,10 @@
 import React from 'react';
 import Form from '../../components/Form.jsx';
+import ProfileHeader from "../../components/profileHeader/ProfileHeader";
+import ProfileCollage from "../../components/collage/ProfileCollage";
 import { act } from 'react-dom/test-utils';
-import { getByPlaceholderText, render, fireEvent, waitForElement, getByTestId } from '@testing-library/react';
+import { render, fireEvent, getByTestId } from '@testing-library/react';
 import { useForm } from "react-hook-form";
-import ProfilePage from '../../Pages/ProfilePage/ProfilePage';
 jest.mock("react-hook-form");
 jest.mock("../../config/__mocks__/firebase.config");
 
@@ -13,30 +14,29 @@ beforeEach(() => {
     useForm.mockReturnValue({ handleSubmit:() => (mockUseFormPush)})
   });
 
-// it("renders Email without crashing", () => {
+it("Profile - Renders title without crashing", () => {
+    const { getByTestId } = render(<ProfileHeader/>);
+    const linkElement = getByTestId('profileHeader-title');
+    expect(linkElement).toBeInTheDocument();
+})
 
-//     const { getByPlaceholderText } = render(<Login/>);
-//     const linkElement = getByPlaceholderText('Email');
-//     expect(linkElement).toBeInTheDocument();
-// })
+it("Profile - Renders review bar without crashing", () => {
+    const { getByTestId } = render(<ProfileHeader/>);
+    const linkElement = getByTestId('profileHeader-review');
+    expect(linkElement).toBeInTheDocument();
+})
 
-// it("renders Password without crashing", () => {
-//     const { getByPlaceholderText } = render(<Login/>);
-//     const linkElement = getByPlaceholderText('Password');
-//     expect(linkElement).toBeInTheDocument();
-// })
+it("Profile - Renders Collage container without crashing", () => {
+    const { getByTestId } = render(<ProfileCollage/>);
+    const linkElement = getByTestId('collage-masterdiv');
+    expect(linkElement).toBeInTheDocument();
+})
 
-// it("renders Title without crashing", () => {
-//     const { getByText } = render(<Login/>);
-//     const linkElement = getByText('User Login');
-//     expect(linkElement).toBeInTheDocument();
-// })
-
-// it("renders message without crashing", () => {
-//     const { getAllByText } = render(<ProfilePage/>);
-//     const linkElement = getByText('Create a new account.');
-//     expect(linkElement).toBeInTheDocument();
-// })
+it("Profile - Renders review bar without crashing", () => {
+    const { getByTestId } = render(<ProfileCollage/>);
+    const linkElement = getByTestId('collage-masterGrid');
+    expect(linkElement).toBeInTheDocument();
+})
 
 it("Profile - Estimate cost time input field renders correctly", () => {
     const { getByLabelText} = render(<Form/>);
