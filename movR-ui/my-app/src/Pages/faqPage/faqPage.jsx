@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import Header from '../../components/faq/Header';
 import FAQ from '../../components/faq/FAQ';
+import './faqPage.css'
 
 
 function FaqPage() {
