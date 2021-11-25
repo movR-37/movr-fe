@@ -35,7 +35,7 @@ export default function ProfileCollage({ mover }: IMover) {
         }
 
         fetchImages();
-    }, [])
+    }, [images])
 
     const bigImage = gotImages[0];
     const smallUpperLeft = gotImages[1];
