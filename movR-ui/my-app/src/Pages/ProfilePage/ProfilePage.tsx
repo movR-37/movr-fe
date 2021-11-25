@@ -34,6 +34,12 @@ interface IMover {
   latitude: Number;
   longitude: Number;
   images: string[];
+  location: string;
+  address: string;
+  subtitle_2: string;
+  subtitle_3: string;
+  profileType: string;
+  about: string;
 }
 
 export default function ProfilePage() {
@@ -47,8 +53,8 @@ export default function ProfilePage() {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
+  const [images, setImages] = useState<String[]>([]);
   const [about, setAbout] = useState("");
-  const [userData, setUserData] = useState();
 
   useEffect(() => {
     const { mover } = state.value;
@@ -60,17 +66,17 @@ export default function ProfilePage() {
       setName(data!.name);
       setNumReviews(data!.noOfReviews);
       setRating(data!.rating);
-      // setLocation(data!.location);
-      // setAddress(data!.address);
-      // setSubtitle_2(data!.subtitle_2);
-      // setSubtitle_3(data!.subtitle_3);
-      // setProfileType(data!.profileType);
-      // setAbout(data!.about);
-      // setUserData(data!);
+      setLocation(data!.location);
+      setAddress(data!.address);
+      setSubtitle_2(data!.subtitle_2);
+      setSubtitle_3(data!.subtitle_3);
+      setProfileType(data!.profileType);
+      setAbout(data!.about);
+      setImages(data!.images)
     }
 
     fetchUser(mover);
-  }, []);
+  }, [state.value]);
 
   let headerData: IProfileHeaderProps = {
     title: name,
