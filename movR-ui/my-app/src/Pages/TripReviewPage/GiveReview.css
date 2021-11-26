@@ -1,0 +1,67 @@
+.GiveReviewMasterDiv{
+    background-image: url("../../components/registration-component/bgs.jpeg");
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-size: cover;
+
+    
+}
+
+.reviewCard{
+    /* width: 75%;
+    display:flex;
+    justify-content:center; */
+    height:50vh;
+    width: 33%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 95px 95px 95px 95px;
+    opacity: 0.88;
+}
+
+.stars{
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.SubmitDiv{
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.GiveReview-txt {
+    font-family: Poppins-Regular;
+    font-size:25px;
+    line-height: 1.5;
+    color: #666666;
+  }

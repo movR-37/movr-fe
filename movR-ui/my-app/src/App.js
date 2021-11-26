@@ -16,6 +16,7 @@ import SignupMover from "./components/SignupMover";
 import MoverWaitRoom from './components/MoverWaitRoom/MoverWaitRoom';
 import ContactUs from './Pages/ContactUsPage/ContactUs';
 import TripReview from './Pages/TripReviewPage/TripReview';
+import GiveReview from './Pages/TripReviewPage/GiveReview';
 
 function App() {
 
@@ -35,7 +36,8 @@ function App() {
             <Route path="/mover" exact component={MoverWaitRoom} />
             <Route path="/payment" exact component={PaymentWrapper} />
             <Route path="/contactus" exact component={ContactUs} />
-            <Route path="/tripReview" exact component={TripReview} />
+            <Route path="/tripSummary" exact component={TripReview} />
+            <Route path="/review" exact component={GiveReview} />
             <Route path="/faq" exact component={FaqPage} />
             <Redirect exact from="/" to="/welcome" />
           </Switch >

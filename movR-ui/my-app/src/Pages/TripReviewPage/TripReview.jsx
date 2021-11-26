@@ -6,9 +6,16 @@ import ReactStars from "react-rating-stars-component";
 import { ReactionBarSelector } from '@charkour/react-reactions';
 import TextField from "@material-ui/core/TextField";
 import { Button, Icon } from 'semantic-ui-react'
+import { useHistory } from "react-router-dom";
 
 function TripReview() {
-    const [value, setValue] = React.useState(2);
+    const history = useHistory();
+    const handleContinue = async (e) => {
+        e.preventDefault();
+        history.push(`/review`);
+    }
+
+    
     return (
         <div className="limiter">
             <div className="TripReview-master-containerA"/>
@@ -74,7 +81,7 @@ function TripReview() {
                 </div>
             </div>
             <div className="TripReview-master-containerTopBottom">
-            <Button animated size='massive'>
+            <Button animated size='massive' onClick={(e) => handleContinue(e)}>
               <Button.Content visible>Continue</Button.Content>
               <Button.Content hidden>
                 <Icon name='arrow right' />
