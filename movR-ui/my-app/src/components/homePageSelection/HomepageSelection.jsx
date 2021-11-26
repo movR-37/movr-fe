@@ -86,6 +86,8 @@ export default function HomepageSelection() {
       >
         Get Started
       </Button>
+      <br />
+      <br />
 
       <Button
         data-testid="getStartedButton"
@@ -94,7 +96,7 @@ export default function HomepageSelection() {
         className="get-started"
         onClick={() => history.push("/trip-history")}
       >
-        Get Started
+        My Trip History
       </Button>
     </div>
   );
