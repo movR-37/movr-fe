@@ -2,25 +2,26 @@
 import React, { useEffect, useState } from "react";
 import "./CurrentTrip.css";
 import { Table } from "semantic-ui-react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
 
 function CurrentTrip() {
   const { id } = useLocation().state;
+  const history = useHistory();
   const [data, setData] = useState();
 
   const socket = io("http://localhost:8000", { transports: ["websocket"] });
-  socket.on("notify-user", (value)=> {
-      
-  })
+  socket.on("notify-user", (value) => {
+    console.log("value", value);
+    history.push("/review", { id });
+  });
 
   const fetchTrip = async () => {
     let response = await axios.get(`http://localhost:8000/trips/${id}`);
     response = response.data;
     setData(response);
   };
-
 
   useEffect(() => {
     fetchTrip();
