@@ -17,6 +17,7 @@ import MoverWaitRoom from './components/MoverWaitRoom/MoverWaitRoom';
 import ContactUs from './Pages/ContactUsPage/ContactUs';
 import MoverProfile from './components/MoverProfile/MoverProfile';
 import EstimatePayment from './Pages/EstimatePayment/EstimatePayment';
+import TripHistory from './components/TripHistory/TripHistory';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
             <Route path="/contactus" exact component={ContactUs} />
             <Route path="/faq" exact component={FaqPage} />
             <Route path="/add-profile" exact component={MoverProfile} />
+            <Route path="/trip-history" exact component={TripHistory} />
             <Redirect exact from="/" to="/welcome" />
           </Switch >
         </Router >
