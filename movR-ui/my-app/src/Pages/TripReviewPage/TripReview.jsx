@@ -15,10 +15,10 @@ function TripReview() {
         history.push(`/review`);
     }
 
-    
+
     return (
-        <div className="limiter">
-            <div className="TripReview-master-containerA"/>
+        <div className="trip-review-limiter">
+            <div className="TripReview-master-containerA" />
             <div className="TripReview-master-container">
                 <div className="wrap-TripReview-icons">
                     <div className="divider">
@@ -32,21 +32,21 @@ function TripReview() {
                     </div>
                 </div>
                 <div className="wrap-TripReview">
-                    
-                    
+
+
                     <div className="TripReview-pic">
-                            <h6 className="TripReview_txt1">Total Cost</h6>
-                            <h6 className="TripReview_txt1">Total Time</h6>
-                            <h6 className="TripReview_txt1">Distance</h6>
+                        <h6 className="TripReview_txt1">Total Cost</h6>
+                        <h6 className="TripReview_txt1">Total Time</h6>
+                        <h6 className="TripReview_txt1">Distance</h6>
                     </div>
 
                     <div className="TripReview-pic">
-                            <h6 className="TripReview_txt2">$132</h6>
+                        <h6 className="TripReview_txt2">$132</h6>
 
-                            <h6 className="TripReview_txt2">5.5 Hours</h6>
-                                                  
-                            <h6 className="TripReview_txt2">3.2 km</h6>
-                            {/* <h6 className="TripReview_txt1">$132</h6>
+                        <h6 className="TripReview_txt2">5.5 Hours</h6>
+
+                        <h6 className="TripReview_txt2">3.2 km</h6>
+                        {/* <h6 className="TripReview_txt1">$132</h6>
                             <br></br>
                             <ReactStars
                                 count={5}
@@ -66,7 +66,7 @@ function TripReview() {
                     </div>
 
 
-                
+
                 </div>
                 <div className="wrap-TripReview-icons">
                     <div className="divider">
@@ -81,14 +81,14 @@ function TripReview() {
                 </div>
             </div>
             <div className="TripReview-master-containerTopBottom">
-            <Button animated size='massive' onClick={(e) => handleContinue(e)}>
-              <Button.Content visible>Continue</Button.Content>
-              <Button.Content hidden>
-                <Icon name='arrow right' />
-              </Button.Content>
-            </Button>
+                <Button animated size='massive' onClick={(e) => handleContinue(e)}>
+                    <Button.Content visible>Continue</Button.Content>
+                    <Button.Content hidden>
+                        <Icon name='arrow right' />
+                    </Button.Content>
+                </Button>
             </div>
-            
+
         </div>
     )
 }

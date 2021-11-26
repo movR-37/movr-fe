@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import fire from "../../config/firebase.config";
 import "./MoverWaitRoom.css";
+import { useHistory } from "react-router-dom";
 
 export default function MoverWaitRoom() {
   const socket = io("http://localhost:8000", { transports: ["websocket"] });
@@ -13,7 +14,8 @@ export default function MoverWaitRoom() {
   const [endTrip, setEndTrip] = useState(false);
   const [data, setData] = useState({});
   const [endTripData, setEndTripData] = useState({});
-  const { email } = fire.auth().currentUser;
+  const { email, uid } = fire.auth().currentUser;
+  const history = useHistory();
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -47,6 +49,7 @@ export default function MoverWaitRoom() {
 
     setIsRequestReceived(false);
     setRequestAccepted(true);
+    history.push(`${uid}/chat`);
   };
 
   const handleEndTrip = () => {
@@ -70,17 +73,27 @@ export default function MoverWaitRoom() {
   return (
     <div>
       {isRequestReceived ? (
-        <div className="mover-request-div">
-          <h3>Request received by: {data.user}</h3>
-          <h3>Request is from City: {data.location}</h3>
-          <Button variant="contained" onClick={handleAccept}>
-            Accept
-          </Button>
-          <Button variant="outlined" onClick={handleCancel}>
-            Decline
-          </Button>
+        <div className="container-waiting">
+          <div className="wrap-waiting waiting-txt">
+            <div className="mover-request-div">
+              <h3>Request received by: {data.user}</h3>
+              <h3>Request is from City: {data.location}</h3>
+              <Button variant="contained" onClick={handleAccept}>
+                Accept
+              </Button>
+              <Button variant="outlined" onClick={handleCancel}>
+                Decline
+              </Button>
+            </div>
+          </div>
         </div>
-      ) : undefined}
+      ) :
+        <div className="container-waiting">
+          <div className="wrap-waiting waiting-txt">
+            Welcome to your wait room! You will be getting your requests here!
+          </div>
+        </div>
+      }
       {isRequestAccepted ? (
         <div className="mover-request-div">
           <h3>Request Accepted!</h3>

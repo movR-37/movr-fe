@@ -1,3 +1,37 @@
 .mover-request-div {
   text-align: center;
 }
+
+.container-waiting {
+  width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-image: url("moverWaiting.jpg");
+    background-size: cover;
+} 
+
+.wrap-waiting {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 100px 130px 33px 95px;
+  opacity: 0.9;
+}
+
+.waiting-txt {
+  font-family: Poppins-Regular;
+  font-size: 30px;
+  line-height: 1.5;
+  color: #666666;
+}
