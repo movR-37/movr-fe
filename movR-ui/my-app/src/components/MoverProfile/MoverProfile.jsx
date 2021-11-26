@@ -65,30 +65,20 @@ export default function MoverProfile() {
     console.log("FILES", files);
     const formData = new FormData();
     for (const key of Object.keys(files)) {
-      formData.append("file", files[key]);
+      formData.append("files", files[key]);
     }
+    formData.append("name", name);
     formData.append("email", user.email);
-    const response = await axios.put("http://localhost:8000/movers", formData, {
+    formData.append("location", location);
+    formData.append("address", address);
+    formData.append("subtitle_2", subtitle_2);
+    formData.append("latitude", lat);
+    formData.append("longitude", lng);
+    formData.append("about", about);
+    await axios.put("http://localhost:8000/movers", formData, {
       headers: { contentType: "multipart/form-data" },
     });
-    const data = response.data;
-    console.log(data);
-    // const profileObj = {
-    //   name,
-    //   location,
-    //   address,
-    //   subtitle_2,
-    //   latitude: lat,
-    //   longitude: lng,
-    //   about,
-    //   images: files,
-    //   email: user.email,
-    // };
-
-    // let response = await axios.put("http://localhost:8000/movers", profileObj);
-    // response = response.data;
-    // console.log(response);
-    // history.push('/profile')
+    history.push("/mover");
   };
 
   useEffect(() => {
@@ -160,15 +150,8 @@ export default function MoverProfile() {
                       type="file"
                       name="file"
                       multiple
-                      accept=".jpg"
+                      accept=".jpg,.jpeg,.png"
                       onChange={(e) => {
-                        //   const files = e.target.files;
-                        //   console.log(files.length);
-                        //   const allFiles = [];
-                        //   for (let i = 0; i < files.length; i++) {
-                        //     allFiles.push(files[i]);
-                        //   }
-                        //   setFiles(allFiles);
                         setFiles(e.target.files);
                       }}
                     />
