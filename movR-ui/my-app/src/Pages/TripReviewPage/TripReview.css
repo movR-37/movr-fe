@@ -1,0 +1,122 @@
+  /*---------------------------------------------*/
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0px;
+  }
+  
+  p {
+    font-family: Poppins-Regular;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+  }
+  
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+    background-image: url("../../components/registration-component/bgs.jpeg");
+    background-size: cover;
+  }
+.TripReview-master-container {                         
+    width: 100%;
+    height:80vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    
+}  
+.TripReview-master-containerTopBottom {                         
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height:25vh;
+    
+}                                              
+
+.wrap-TripReview {
+    width: 33%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 33px 95px 33px 95px;
+    opacity: 0.88;
+  }
+
+.wrap-TripReview-icons {
+    width: 33%;
+    height:25vh;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 33px 95px 33px 95px;
+    opacity: 0.88;
+  }
+
+.wrap-TripReviewIconsInvis {
+    width: 25%;
+    background: #fff;
+    border-radius: 10px;
+    align:left;
+    padding: 100px 100px 100px 100px;
+    opacity: 0;
+  }
+
+
+.TripReview-pic {
+    width:40%;
+    overflow: hidden; 
+  }
+   
+
+.TripReview_txt1 {
+    font-family: Poppins-Regular;
+    font-size:25px;
+    line-height: 2;
+    color: #666666;
+  }
+.TripReview_txt2 {
+    font-family: Poppins-Regular;
+    font-size:25px;
+    line-height: 2;
+    color: #666666;
+  }
+.divider{
+    justify-content:center;
+}
+.thumbTrip {
+    transition: 0.3s;
+    width:150px;
+
+  }
+  
+.thumbTrip:hover {
+    transform: scale(0.8);
+    border-radius: 18px;
+  }
+  
