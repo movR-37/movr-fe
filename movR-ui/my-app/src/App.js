@@ -19,6 +19,8 @@ import MoverProfile from './components/MoverProfile/MoverProfile';
 import EstimatePayment from './Pages/EstimatePayment/EstimatePayment';
 import TripHistory from './components/TripHistory/TripHistory';
 import CurrentTrip from './Pages/CurrentTrip/CurrentTrip';
+import TripReview from './Pages/TripReviewPage/TripReview';
+import GiveReview from './Pages/TripReviewPage/GiveReview';
 
 function App() {
 
@@ -39,6 +41,8 @@ function App() {
             <Route path="/payment-cost" exact component={EstimatePayment} />
             <Route path="/payment" exact component={PaymentWrapper} />
             <Route path="/contactus" exact component={ContactUs} />
+            <Route path="/tripSummary" exact component={TripReview} />
+            <Route path="/review" exact component={GiveReview} />
             <Route path="/faq" exact component={FaqPage} />
             <Route path="/add-profile" exact component={MoverProfile} />
             <Route path="/trip-history" exact component={TripHistory} />
