@@ -82,7 +82,17 @@ export default function HomepageSelection() {
         color="secondary"
         className="get-started"
         onClick={handleSubmit}
-        // onClick={() => history.push("/profile")}
+      // onClick={() => history.push("/profile")}
+      >
+        Get Started
+      </Button>
+
+      <Button
+        data-testid="getStartedButton"
+        variant="contained"
+        color="primary"
+        className="get-started"
+        onClick={() => history.push("/trip-history")}
       >
         Get Started
       </Button>
