@@ -18,6 +18,7 @@ import ContactUs from './Pages/ContactUsPage/ContactUs';
 import MoverProfile from './components/MoverProfile/MoverProfile';
 import EstimatePayment from './Pages/EstimatePayment/EstimatePayment';
 import TripHistory from './components/TripHistory/TripHistory';
+import CurrentTrip from './Pages/CurrentTrip/CurrentTrip';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
             <Route path="/faq" exact component={FaqPage} />
             <Route path="/add-profile" exact component={MoverProfile} />
             <Route path="/trip-history" exact component={TripHistory} />
+            <Route path="/current-trip" exact component={CurrentTrip} />
             <Redirect exact from="/" to="/welcome" />
           </Switch >
         </Router >

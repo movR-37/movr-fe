@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import "./Payment.css";
 
@@ -25,6 +26,7 @@ const CARD_OPTIONS = {
 };
 
 export default function Payment({ data }) {
+  const history = useHistory();
   const bill = data.bill;
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
@@ -82,7 +84,11 @@ export default function Payment({ data }) {
       ) : (
         <div>
           <h2>Payment Successful!</h2>
-          <Button>View your trips!</Button>
+          <Button
+            onClick={() => history.push("/current-trip", { id: data.id })}
+          >
+            View your trips!
+          </Button>
         </div>
       )}
     </>

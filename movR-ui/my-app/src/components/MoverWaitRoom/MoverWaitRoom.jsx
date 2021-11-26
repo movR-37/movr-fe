@@ -9,7 +9,10 @@ export default function MoverWaitRoom() {
   const socket = io("http://localhost:8000", { transports: ["websocket"] });
   const [isRequestReceived, setIsRequestReceived] = useState(false);
   const [isRequestAccepted, setRequestAccepted] = useState(false);
+  const [isTripEnded, setIsTripEnded] = useState(false);
+  const [endTrip, setEndTrip] = useState(false);
   const [data, setData] = useState({});
+  const [endTripData, setEndTripData] = useState({});
   const { email } = fire.auth().currentUser;
 
   useEffect(() => {
@@ -18,7 +21,7 @@ export default function MoverWaitRoom() {
     });
   }, [socket]);
 
-  const handleCancel = async () => {
+  const handleCancel = () => {
     setIsRequestReceived(false);
   };
 
@@ -46,6 +49,18 @@ export default function MoverWaitRoom() {
     setRequestAccepted(true);
   };
 
+  const handleEndTrip = () => {
+    socket.emit("end-trip-notify-user", endTripData);
+    setIsRequestReceived(false);
+    setIsTripEnded(false);
+    setEndTrip(true);
+  };
+
+  socket.on("notify-mover", (value) => {
+    setIsTripEnded(true);
+    setEndTripData(value);
+  });
+
   socket.on("receive-request", (value) => {
     setRequestAccepted(false);
     setIsRequestReceived(true);
@@ -69,6 +84,16 @@ export default function MoverWaitRoom() {
       {isRequestAccepted ? (
         <div className="mover-request-div">
           <h3>Request Accepted!</h3>
+        </div>
+      ) : undefined}
+      {isTripEnded ? (
+        <Button variant="contained" onClick={handleEndTrip}>
+          End Trip
+        </Button>
+      ) : undefined}
+      {endTrip ? (
+        <div className="mover-request-div">
+          <h3>Trip Ended!</h3>
         </div>
       ) : undefined}
     </div>
