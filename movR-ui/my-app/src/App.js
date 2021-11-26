@@ -16,6 +16,7 @@ import SignupMover from "./components/SignupMover";
 import MoverWaitRoom from './components/MoverWaitRoom/MoverWaitRoom';
 import ContactUs from './Pages/ContactUsPage/ContactUs';
 import MoverProfile from './components/MoverProfile/MoverProfile';
+import EstimatePayment from './Pages/EstimatePayment/EstimatePayment';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/welcome" component={LandingPage} />
             <Route path="/profile" exact component={Profile} />
             <Route path="/mover" exact component={MoverWaitRoom} />
+            <Route path="/payment-cost" exact component={EstimatePayment} />
             <Route path="/payment" exact component={PaymentWrapper} />
             <Route path="/contactus" exact component={ContactUs} />
             <Route path="/faq" exact component={FaqPage} />

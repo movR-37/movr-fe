@@ -12,20 +12,27 @@ import Dialog from '@material-ui/core/Dialog';
 import { IProfileHighlightsItemProps } from "../../components/profileHighlights/profileHighlightsItem/ProfileHighlightsItem";
 import { IProfileHighlightsProps } from "../../components/profileHighlights/ProfileHighlights";
 import { IAboutProfileProps } from "../../components/aboutProfile/AboutProfile";
-import { ClickAwayListener, IconButton, Button } from "@material-ui/core";
+import { ClickAwayListener, IconButton } from "@material-ui/core";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import axios from "axios"
 import { useHistory } from "react-router-dom";
 import fire from "../../config/firebase.config";
 import Form from '../../components/Form.jsx';
 import { useLocation } from 'react-router-dom';
+import { Button } from 'semantic-ui-react'
 
 interface LocationStates {
   value: {
-    mover: string
+    mover: string,
+    allData: ITrip
   }
 }
 
+interface ITrip {
+  _id: string;
+  user: string;
+  mover: string;
+}
 interface IMover {
   name: string;
   email: string;
@@ -43,7 +50,8 @@ interface IMover {
 }
 
 export default function ProfilePage() {
-
+  const history = useHistory();
+  const user = fire.auth().currentUser;
   const { state } = useLocation<LocationStates>();
   const [name, setName] = useState("");
   const [numReviews, setNumReviews] = useState("");
@@ -55,6 +63,14 @@ export default function ProfilePage() {
   const [profileType, setProfileType] = useState("");
   const [images, setImages] = useState<string[]>([]);
   const [about, setAbout] = useState("");
+
+  const cancelTrip = async () => {
+    const { allData } = state.value;
+    const response = await axios.delete(`http://localhost:8000/trips/${allData._id}`);
+    console.log(response);
+    history.push(`/${user?.uid || "123"}/home`)
+
+  }
 
   useEffect(() => {
     const { mover } = state.value;
@@ -127,7 +143,6 @@ export default function ProfilePage() {
       <Container maxWidth="lg" className="container">
         <div className="hallContainer">
           <ProfileHeader title={headerData.title} noOfReviews={headerData.noOfReviews} rating={headerData.rating} location={headerData.location} />
-
           <ProfileCollage profileImages={images} />
           <div className="temp">
             <div className="highlights-component">
@@ -136,14 +151,13 @@ export default function ProfilePage() {
                 profileIconUrl={highlightsData.profileIconUrl}
                 highlightItems={highlightsData.highlightItems} />
               <AboutProfile profileType={aboutData.profileType} aboutBody={aboutData.aboutBody} />
-
               <hr></hr>
             </div>
             <div className="review-component">
-              <Form />
-              {/* <Button variant="contained" color="secondary" className="modalButton" onClick={handleClick}>
-                Accept
-              </Button> */}
+              <Button positive onClick={() => history.push(`/${user?.uid || "123"}/chat`)}>Chat</Button>
+              <Button positive onClick={() => history.push("/payment-cost", { id: state.value.allData._id })}>Pay</Button>
+              <Button onClick={cancelTrip}>Cancel</Button>
+              {/* <Form /> */}
             </div>
           </div>
 

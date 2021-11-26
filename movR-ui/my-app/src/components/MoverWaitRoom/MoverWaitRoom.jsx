@@ -33,9 +33,11 @@ export default function MoverWaitRoom() {
       connectionObj
     );
     const { mover } = response.data;
+    const requestData = response.data;
 
     socket.emit("accept-request", {
       mover,
+      allData: requestData,
     });
 
     console.log("handling submit for mover");
