@@ -22,6 +22,7 @@ import CurrentTrip from './Pages/CurrentTrip/CurrentTrip';
 import TripReview from './Pages/TripReviewPage/TripReview';
 import GiveReview from './Pages/TripReviewPage/GiveReview';
 import Itinerary from './Pages/Itinerary/Itinerary';
+import InProgress from './Pages/InProgressPage/InProgress';
 
 function App() {
 
@@ -47,8 +48,9 @@ function App() {
             <Route path="/faq" exact component={FaqPage} />
             <Route path="/add-profile" exact component={MoverProfile} />
             <Route path="/trip-history" exact component={TripHistory} />
-            <Route path="/current-trip" exact component={CurrentTrip} />
+            <Route path="/current-trip" exact component={CurrentTrip} />InProgress
             <Route path="/itinerary" exact component={Itinerary} />
+            <Route path="/inprogress" exact component={InProgress} />
             <Redirect exact from="/" to="/welcome" />
           </Switch >
         </Router >
