@@ -1,0 +1,60 @@
+.inProgressMaster {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.progressCardWrap {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+
+  background-image: url("../../components/LandingPage/landingBG_1.jpg");
+  background-size: cover;
+}
+
+.progressCard {
+  width: 80%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 120px 130px 33px 95px;
+  opacity: 0.88;
+}
+
+.progress-pic {
+  width: 50%;
+  overflow: hidden;
+}
+
+.progress-pic img {
+  max-width: 100%;
+}
+
+.thumbProgress {
+  animation: pulse 5s infinite;
+  /* transition: 0.3s; */
+}
+
+.inProgress_txt1 {
+  font-family: Poppins-Regular;
+  padding-left: 10px;
+  font-size: 50px;
+  line-height: 1.5;
+  color: #666666;
+}

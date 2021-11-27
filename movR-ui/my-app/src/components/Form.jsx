@@ -15,71 +15,57 @@ import { useHistory } from "react-router-dom";
 import fire from "../config/firebase.config";
 import axios from "axios";
 
-export default function Form() {
+export default function Form({ id }) {
   const [currentSum, setCurrentSum] = useState();
   const [currentTip, setCurrentTip] = useState(0);
   const [estimatedTime, setEstimatedTime] = useState("");
   const [hourlyRate, setHourlyRate] = useState("");
   const [estimatedDistance, setEstimatedDistance] = useState("");
-  const [moverName, setMoverName] = useState("");
-  const [moverEmail, setMoverEmail] = useState("");
+  const [currentTime, setCurrentTime] = useState();
+  const [currentDistance, setCurrentDistance] = useState();
+  // const [trip, setTrip] = useState();
   const history = useHistory();
   const user = fire.auth().currentUser;
 
-
-  useEffect(() => {
-
-    const findMover = async () => {
-      let response = await axios.get('http://localhost:8000/users/619bef5149082a3546e3c00b');
-
-
-      const data = response.data;
-      setMoverName(data.name);
-      setMoverEmail(data.email);
-
-    }
-
-    findMover();
-  }, []);
-
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(currentTip);
-    let val =
-      estimatedTime * 30 * (1 + currentTip / 100) * 1.15 +
-      1.67 * estimatedDistance;
+    // console.log(currentTip);
+    const total = estimatedTime * 30 + 1.67 * estimatedDistance;
+    const totalTip = (total * currentTip) / 1000;
+    let val = total * 1.15 + totalTip;
+    // console.log(total, totalWithTip, val);
     setCurrentSum(parseFloat(val).toFixed(2));
+    setCurrentTime(parseFloat(estimatedTime).toFixed(2));
+    setCurrentDistance(parseFloat(estimatedDistance).toFixed(2));
   };
-
-
-  const connectUserToMover = async () => {
-
-    const connectionObj = {
-      mover: moverEmail,
-      user: user.email,
-      bill: currentSum ? currentSum : 0,
-      completed: false
-    }
-    console.log(connectionObj);
-    let response = await axios.post('http://localhost:8000/trips', connectionObj);
-    console.log(response);
-
-  }
 
   const handleAccept = async (e) => {
     e.preventDefault();
-    connectUserToMover();
-    history.push(`/${user.uid}/chat`);
-  }
 
-  const handleCancel = (e) => {
+    history.push("/inprogress", {
+      id,
+      bill: currentSum ? currentSum : 0,
+      completed: false,
+      currentTip: currentTip,
+      totalHours: currentTime,
+      totalDistance: currentDistance,
+    });
+  };
+
+  const handleRadio = (e) => {
+    setCurrentTip(parseInt(e.target.value));
+  };
+
+  const handleCancel = async (e) => {
     e.preventDefault();
-    history.push(`/${user.uid}/home`)
-  }
+    await axios.delete(`http://localhost:8000/trips/${id}`);
+    history.push(`/${user.uid}/home`);
+  };
 
   return (
     <div className="reviewFormContainer">
       <form className="reviewForm-form">
+        <h1>Estimate Cost</h1>
         <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
           <OutlinedInput
             id="outlined-adornment-Time"
@@ -93,7 +79,10 @@ export default function Form() {
               "aria-label": "Time",
             }}
           />
-          <FormHelperText data-testid = "timeField" id="outlined-Distance-helper-text">
+          <FormHelperText
+            data-testid="timeField"
+            id="outlined-Distance-helper-text"
+          >
             Time
           </FormHelperText>
         </FormControl>
@@ -110,7 +99,10 @@ export default function Form() {
               "aria-label": "Distance",
             }}
           />
-          <FormHelperText data-testid = "distanceField" id="outlined-Distance-helper-text">
+          <FormHelperText
+            data-testid="distanceField"
+            id="outlined-Distance-helper-text"
+          >
             Distance
           </FormHelperText>
         </FormControl>
@@ -132,29 +124,34 @@ export default function Form() {
             name="row-radio-buttons-group"
             defaultValue="15"
             size="small"
+            onChange={handleRadio}
           >
             <FormControlLabel
-              value="15"
+              value="150"
               control={<Radio />}
               label="15"
-              onChange={(e) => setCurrentTip(e.target.value)}
+              onClick={(e) => setCurrentTip(1500)}
             />
             <FormControlLabel
-              value="20"
+              value="200"
               control={<Radio />}
               label="20"
-              onChange={(e) => setCurrentTip(e.target.value)}
+              onClick={(e) => setCurrentTip(2000)}
             />
             <FormControlLabel
-              value="25"
+              value="250"
               control={<Radio />}
               label="25"
-              onChange={(e) => setCurrentTip(e.target.value)}
+              onClick={(e) => setCurrentTip(2500)}
             />
           </RadioGroup>
         </FormControl>
         <br />
-        <Button aria-label="subButton" variant="outlined" onClick={(e) => onSubmit(e)}>
+        <Button
+          aria-label="subButton"
+          variant="outlined"
+          onClick={(e) => onSubmit(e)}
+        >
           Calculate Cost
         </Button>
         {/* <Button size="medium" onClick={(e) => onSubmit(e)}>
@@ -181,13 +178,12 @@ export default function Form() {
           className="gotoChat"
           onClick={(e) => handleAccept(e)}
         >
-          Chat
+          Confirm Trip!
         </Button>
-        <Button
-          variant="outlined"
-          onClick={(e) => handleCancel(e)}
-        >
-          Cancel
+        <br />
+        <br />
+        <Button variant="outlined" onClick={(e) => handleCancel(e)}>
+          Go Back
         </Button>
       </form>
     </div>

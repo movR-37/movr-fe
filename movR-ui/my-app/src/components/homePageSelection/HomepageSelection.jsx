@@ -14,13 +14,14 @@ export default function HomepageSelection() {
   const [socket, setSocket] = React.useState();
   const user = fire.auth().currentUser;
   const history = useHistory();
-  // Update this to take from db
-  const data = {
-    user: user.email,
-    location: "mtl",
-  };
+
+  const [location, setActiveLocation] = React.useState();
 
   const handleSubmit = () => {
+    const data = {
+      user: user ? user.email : "",
+      location: location || "mtl",
+    };
     const socket = io("http://localhost:8000", { transports: ["websocket"] });
     setSocket(socket);
     socket.on("connect", () => {
@@ -30,7 +31,8 @@ export default function HomepageSelection() {
   };
   if (socket) {
     socket.on("ack-accept", (value) => {
-      console.log(value);
+      console.log("Value received by ack-received", value);
+      history.push("/profile", { value });
     });
   }
 
@@ -44,7 +46,12 @@ export default function HomepageSelection() {
           label="Select Location"
           data-testid="demo-simple-select-id"
         >
-          <MenuItem value={"Montreal"}>Montreal</MenuItem>
+          <MenuItem
+            value={"Montreal"}
+            onClick={() => setActiveLocation("Montreal")}
+          >
+            Montreal
+          </MenuItem>
         </Select>
       </FormControl>
 
@@ -77,7 +84,45 @@ export default function HomepageSelection() {
         onClick={handleSubmit}
         // onClick={() => history.push("/profile")}
       >
-        Get Started
+        FIND ME A MOVER
+      </Button>
+      <br />
+      <br />
+
+      <Button
+        data-testid="getStartedButton"
+        variant="contained"
+        color="primary"
+        className="get-started"
+        onClick={() => history.push("/trip-history")}
+      >
+        My Trip History
+      </Button>
+
+      <br />
+      <br />
+
+      <Button
+        data-testid="getStartedButton"
+        variant="contained"
+        color="primary"
+        className="get-started"
+        onClick={() => history.push("/faq")}
+      >
+        FAQ
+      </Button>
+
+      <br />
+      <br />
+
+      <Button
+        data-testid="getStartedButton"
+        variant="contained"
+        color="primary"
+        className="get-started"
+        onClick={() => history.push("/contactus")}
+      >
+        Contact Us
       </Button>
     </div>
   );

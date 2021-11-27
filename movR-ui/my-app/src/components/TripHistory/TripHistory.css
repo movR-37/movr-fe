@@ -1,0 +1,10 @@
+.trip-text {
+    font-family: Poppins-Regular;
+    font-size: 50px;
+    line-height: 1.5;
+    color: #666666;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+  }

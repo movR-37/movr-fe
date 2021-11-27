@@ -1,6 +1,8 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 import "./Payment.css";
 
 const CARD_OPTIONS = {
@@ -23,7 +25,9 @@ const CARD_OPTIONS = {
   },
 };
 
-export default function Payment() {
+export default function Payment({ data }) {
+  const history = useHistory();
+  const bill = data.bill;
   const [success, setSuccess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -39,13 +43,24 @@ export default function Payment() {
       try {
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:8000/payment", {
-          amount: 1000,
+          amount: parseFloat(bill) * 100,
           id,
         });
 
         if (response.data.success) {
           console.log("Successful payment");
           setSuccess(true);
+          const putObject = {
+            bill: data.bill,
+            completed: data.completed,
+            totalHours: data.totalHours,
+            totalDistance: data.totalDistance,
+          };
+          const response = await axios.put(
+            `http://localhost:8000/trips/${data.id}`,
+            putObject
+          );
+          console.log(response.data);
         }
       } catch (error) {
         console.log("Error", error);
@@ -56,7 +71,10 @@ export default function Payment() {
   };
 
   return (
-    <>
+    <div className="paymentPage-container">
+      <h1 className="landing-txt1" style={{ textAlign: "center" }}>
+        Enter Payment Details!
+      </h1>
       {!success ? (
         <form onSubmit={handleSubmit}>
           <fieldset className="FormGroup">
@@ -67,10 +85,18 @@ export default function Payment() {
           <button className="PaymentButton">Pay</button>
         </form>
       ) : (
-        <div>
-          <h2>Payment Successful!</h2>
+        <div className="paymentPage-sucess">
+          <h1 className="landing-txt1">Payment Successful!</h1>
+          <Button
+            variant="contained"
+            color="primary"
+            // onClick={() => history.push("/tripsummary", { id: data.id })}
+            onClick={() => history.push("/review", { id: data.id })}
+          >
+            Proceed
+          </Button>
         </div>
       )}
-    </>
+    </div>
   );
 }

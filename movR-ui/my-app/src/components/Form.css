@@ -1,11 +1,25 @@
 .reviewFormContainer {
-  border-radius: 25px;
+  /* border-radius: 25px;
   width: 500px;
   min-height: 450px;
   margin: 0 auto;
   background-color: rgb(243, 232, 217);
   text-align: center;
-  justify-items: center;
+  justify-items: center; */
+  width: 30%;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 120px 130px 33px 95px;
+  opacity: 0.88;
 }
 
 .reviewForm-input {
@@ -14,4 +28,10 @@
 
 .gotoChat {
   margin-top: 15px;
+}
+
+.reviewForm-form {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }

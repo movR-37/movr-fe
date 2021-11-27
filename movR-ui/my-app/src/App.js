@@ -15,6 +15,14 @@ import LoginMover from "./components/LoginMover";
 import SignupMover from "./components/SignupMover";
 import MoverWaitRoom from './components/MoverWaitRoom/MoverWaitRoom';
 import ContactUs from './Pages/ContactUsPage/ContactUs';
+import MoverProfile from './components/MoverProfile/MoverProfile';
+import EstimatePayment from './Pages/EstimatePayment/EstimatePayment';
+import TripHistory from './components/TripHistory/TripHistory';
+import CurrentTrip from './Pages/CurrentTrip/CurrentTrip';
+import TripReview from './Pages/TripReviewPage/TripReview';
+import GiveReview from './Pages/TripReviewPage/GiveReview';
+import Itinerary from './Pages/Itinerary/Itinerary';
+import InProgress from './Pages/InProgressPage/InProgress';
 
 function App() {
 
@@ -32,9 +40,17 @@ function App() {
             <Route path="/welcome" component={LandingPage} />
             <Route path="/profile" exact component={Profile} />
             <Route path="/mover" exact component={MoverWaitRoom} />
+            <Route path="/payment-cost" exact component={EstimatePayment} />
             <Route path="/payment" exact component={PaymentWrapper} />
             <Route path="/contactus" exact component={ContactUs} />
+            <Route path="/tripSummary" exact component={TripReview} />
+            <Route path="/review" exact component={GiveReview} />
             <Route path="/faq" exact component={FaqPage} />
+            <Route path="/add-profile" exact component={MoverProfile} />
+            <Route path="/trip-history" exact component={TripHistory} />
+            <Route path="/current-trip" exact component={CurrentTrip} />InProgress
+            <Route path="/itinerary" exact component={Itinerary} />
+            <Route path="/inprogress" exact component={InProgress} />
             <Redirect exact from="/" to="/welcome" />
           </Switch >
         </Router >

@@ -12,16 +12,47 @@ import Dialog from '@material-ui/core/Dialog';
 import { IProfileHighlightsItemProps } from "../../components/profileHighlights/profileHighlightsItem/ProfileHighlightsItem";
 import { IProfileHighlightsProps } from "../../components/profileHighlights/ProfileHighlights";
 import { IAboutProfileProps } from "../../components/aboutProfile/AboutProfile";
-import { ClickAwayListener, IconButton, Button } from "@material-ui/core";
+import { ClickAwayListener, IconButton } from "@material-ui/core";
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import axios from "axios"
 import { useHistory } from "react-router-dom";
 import fire from "../../config/firebase.config";
 import Form from '../../components/Form.jsx';
-import { SettingsBackupRestoreOutlined } from "@material-ui/icons";
+import { useLocation } from 'react-router-dom';
+import { Button } from 'semantic-ui-react'
+
+interface LocationStates {
+  value: {
+    mover: string,
+    allData: ITrip
+  }
+}
+
+interface ITrip {
+  _id: string;
+  user: string;
+  mover: string;
+}
+interface IMover {
+  name: string;
+  email: string;
+  noOfReviews: string;
+  rating: string;
+  latitude: Number;
+  longitude: Number;
+  images: string[];
+  location: string;
+  address: string;
+  subtitle_2: string;
+  subtitle_3: string;
+  profileType: string;
+  about: string;
+}
 
 export default function ProfilePage() {
-
+  const history = useHistory();
+  const user = fire.auth().currentUser;
+  const { state } = useLocation<LocationStates>();
   const [name, setName] = useState("");
   const [numReviews, setNumReviews] = useState("");
   const [rating, setRating] = useState("");
@@ -30,28 +61,39 @@ export default function ProfilePage() {
   const [subtitle_2, setSubtitle_2] = useState("");
   const [subtitle_3, setSubtitle_3] = useState("");
   const [profileType, setProfileType] = useState("");
+  const [images, setImages] = useState<string[]>([]);
   const [about, setAbout] = useState("");
-  const [openModal, setOpenModal] = useState(false);
-  const [userData, setUserData] = useState();
+
+  const cancelTrip = async () => {
+    const { allData } = state.value;
+    const response = await axios.delete(`http://localhost:8000/trips/${allData._id}`);
+    console.log(response);
+    history.push(`/${user?.uid || "123"}/home`)
+
+  }
 
   useEffect(() => {
-    async function fetchUser() {
-      const response = await axios.get('http://localhost:8000/movers/619eddabff6afc76c61df902');
-      const data = response.data;
-      setName(data.name);
-      setNumReviews(data.noOfReviews);
-      setRating(data.rating);
-      setLocation(data.location);
-      setAddress(data.address);
-      setSubtitle_2(data.subtitle_2);
-      setSubtitle_3(data.subtitle_3);
-      setProfileType(data.profileType);
-      setAbout(data.about);
-      setUserData(data);
+    const { mover } = state.value;
+    async function fetchUser(email: string) {
+      const response = await axios.get(`http://localhost:8000/movers?email=${email}`);
+      const responseData: Partial<IMover[]> = response.data.mover;
+      const data = responseData.find((d) => d?.email === email);
+      console.log(data)
+
+      setName(data!.name);
+      setNumReviews(data!.noOfReviews);
+      setRating(data!.rating);
+      setLocation(data!.location);
+      setAddress(data!.address);
+      setSubtitle_2(data!.subtitle_2);
+      setSubtitle_3(data!.subtitle_3);
+      setProfileType(data!.profileType);
+      setAbout(data!.about);
+      setImages(data!.images)
     }
 
-    fetchUser();
-  }, []);
+    fetchUser(mover);
+  }, [state.value]);
 
   let headerData: IProfileHeaderProps = {
     title: name,
@@ -87,7 +129,7 @@ export default function ProfilePage() {
   const aboutBody = about;
 
   const aboutData: IAboutProfileProps = {
-    profileType: "Venue",
+    profileType: "Mover",
     aboutBody
   };
 
@@ -97,26 +139,10 @@ export default function ProfilePage() {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <div className="footer-reservation">
-        <Button variant="contained" color="secondary" className="modalButton" onClick={handleClick}>
-          Check Availability & Dates
-        </Button>
-        {open ? (
-          <Dialog fullScreen open={open} onClose={handleClose}>
-            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-              <HighlightOffIcon />
-            </IconButton>
-            <div className="reservation">
-              <BookingReservation />
-            </div>
-          </Dialog>
-        ) : undefined}
-      </div>
       <Container maxWidth="lg" className="container">
         <div className="hallContainer">
           <ProfileHeader title={headerData.title} noOfReviews={headerData.noOfReviews} rating={headerData.rating} location={headerData.location} />
-
-          <ProfileCollage />
+          <ProfileCollage profileImages={images} />
           <div className="temp">
             <div className="highlights-component">
               <ProfileHighlights
@@ -124,14 +150,13 @@ export default function ProfilePage() {
                 profileIconUrl={highlightsData.profileIconUrl}
                 highlightItems={highlightsData.highlightItems} />
               <AboutProfile profileType={aboutData.profileType} aboutBody={aboutData.aboutBody} />
-
               <hr></hr>
             </div>
             <div className="review-component">
-              <Form />
-              {/* <Button variant="contained" color="secondary" className="modalButton" onClick={handleClick}>
-                Accept
-              </Button> */}
+              <Button positive onClick={() => history.push(`/${user?.uid || "123"}/chat`)}>Chat</Button>
+              <Button positive onClick={() => history.push("/payment-cost", { id: state.value.allData._id })}>Estimate Trip Cost</Button>
+              <Button onClick={cancelTrip}>Cancel</Button>
+              {/* <Form /> */}
             </div>
           </div>
 
