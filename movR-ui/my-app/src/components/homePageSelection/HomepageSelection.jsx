@@ -82,7 +82,7 @@ export default function HomepageSelection() {
         color="secondary"
         className="get-started"
         onClick={handleSubmit}
-      // onClick={() => history.push("/profile")}
+        // onClick={() => history.push("/profile")}
       >
         FIND ME A MOVER
       </Button>
@@ -97,6 +97,32 @@ export default function HomepageSelection() {
         onClick={() => history.push("/trip-history")}
       >
         My Trip History
+      </Button>
+
+      <br />
+      <br />
+
+      <Button
+        data-testid="getStartedButton"
+        variant="contained"
+        color="primary"
+        className="get-started"
+        onClick={() => history.push("/faq")}
+      >
+        FAQ
+      </Button>
+
+      <br />
+      <br />
+
+      <Button
+        data-testid="getStartedButton"
+        variant="contained"
+        color="primary"
+        className="get-started"
+        onClick={() => history.push("/contactus")}
+      >
+        Contact Us
       </Button>
     </div>
   );

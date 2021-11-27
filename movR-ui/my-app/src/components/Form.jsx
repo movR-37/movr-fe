@@ -29,10 +29,11 @@ export default function Form({ id }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(currentTip);
-    let val =
-      estimatedTime * 30 * (1 + currentTip / 100) * 1.15 +
-      1.67 * estimatedDistance;
+    // console.log(currentTip);
+    const total = estimatedTime * 30 + 1.67 * estimatedDistance;
+    const totalTip = (total * currentTip) / 1000;
+    let val = total * 1.15 + totalTip;
+    // console.log(total, totalWithTip, val);
     setCurrentSum(parseFloat(val).toFixed(2));
     setCurrentTime(parseFloat(estimatedTime).toFixed(2));
     setCurrentDistance(parseFloat(estimatedDistance).toFixed(2));
@@ -40,15 +41,18 @@ export default function Form({ id }) {
 
   const handleAccept = async (e) => {
     e.preventDefault();
-    history.push(`/payment`, {
-      data: {
-        id,
-        bill: currentSum ? currentSum : 0,
-        completed: false,
-        totalHours: currentTime,
-        totalDistance: currentDistance,
-      },
+    history.push("/itinerary", {
+      id,
+      bill: currentSum ? currentSum : 0,
+      completed: false,
+      currentTip: currentTip,
+      totalHours: currentTime,
+      totalDistance: currentDistance,
     });
+  };
+
+  const handleRadio = (e) => {
+    setCurrentTip(parseInt(e.target.value));
   };
 
   const handleCancel = async (e) => {
@@ -118,24 +122,25 @@ export default function Form({ id }) {
             name="row-radio-buttons-group"
             defaultValue="15"
             size="small"
+            onChange={handleRadio}
           >
             <FormControlLabel
-              value="15"
+              value="150"
               control={<Radio />}
               label="15"
-              onChange={(e) => setCurrentTip(e.target.value)}
+              onClick={(e) => setCurrentTip(1500)}
             />
             <FormControlLabel
-              value="20"
+              value="200"
               control={<Radio />}
               label="20"
-              onChange={(e) => setCurrentTip(e.target.value)}
+              onClick={(e) => setCurrentTip(2000)}
             />
             <FormControlLabel
-              value="25"
+              value="250"
               control={<Radio />}
               label="25"
-              onChange={(e) => setCurrentTip(e.target.value)}
+              onClick={(e) => setCurrentTip(2500)}
             />
           </RadioGroup>
         </FormControl>

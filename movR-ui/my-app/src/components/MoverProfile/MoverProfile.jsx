@@ -52,7 +52,7 @@ export default function MoverProfile() {
 
   const handleCancel = () => {
     // Go to waiting room
-    history.push("/profile");
+    history.push("/mover");
   };
 
   return (
@@ -136,7 +136,7 @@ export default function MoverProfile() {
                     className="login100-form-btn"
                     style={{ backgroundColor: "#8B0000" }}
                   >
-                    CANCEL
+                    Go to wait room
                   </button>
                 </div>
               </div>

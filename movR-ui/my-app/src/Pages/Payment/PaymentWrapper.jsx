@@ -11,7 +11,6 @@ export default function PaymentWrapper() {
   const { data } = useLocation().state;
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Enter Payment Details!</h1>
       <Elements stripe={stripePromise}>
         <Payment data={data} />
       </Elements>

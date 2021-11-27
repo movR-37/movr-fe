@@ -1,5 +1,5 @@
 .paymentPage-container {
-  background-image: url("../../components/registration-component/bgs.jpeg");
+  background-image: url("./payment.jpg");
   background-size: cover;
   height: 100vh;
   width: 100vw;
@@ -13,6 +13,15 @@
   align-items: center;
   height: 100vh;
 } */
+
+.paymentPage-sucess {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
 
 .FormGroup {
   margin: 0 15px 20px;

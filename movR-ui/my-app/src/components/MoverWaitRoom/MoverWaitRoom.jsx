@@ -49,7 +49,6 @@ export default function MoverWaitRoom() {
 
     setIsRequestReceived(false);
     setRequestAccepted(true);
-    // history.push(`${uid}/chat`);
   };
 
   const handleEndTrip = () => {
@@ -96,6 +95,12 @@ export default function MoverWaitRoom() {
             {isRequestAccepted ? (
               <div className="mover-request-div">
                 <h3>Request Accepted!</h3>
+                <Button
+                  variant="contained"
+                  onClick={() => history.push(`/${uid}/chat`)}
+                >
+                  Chat
+                </Button>
               </div>
             ) : (
               <p></p>
@@ -117,33 +122,6 @@ export default function MoverWaitRoom() {
           </div>
         </div>
       </div>
-      {/* {isRequestReceived ? (
-        <div className="container-waiting">
-          <div className="wrap-waiting waiting-txt">
-            <div className="mover-request-div">
-              <h3>Request received by: {data.user}</h3>
-              <h3>Request is from City: {data.location}</h3>
-              <Button variant="contained" onClick={handleAccept}>
-                Accept
-              </Button>
-              <Button variant="outlined" onClick={handleCancel}>
-                Decline
-              </Button>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="container-waiting">
-          <div className="wrap-waiting waiting-txt">
-            Welcome to your wait room! You will be getting your requests here!
-          </div>
-        </div>
-      )} */}
-      {/* {isRequestAccepted ? (
-        <div className="mover-request-div">
-          <h3>Request Accepted!</h3>
-        </div>
-      ) : undefined} */}
       {isTripEnded ? (
         <Button variant="contained" onClick={handleEndTrip}>
           End Trip

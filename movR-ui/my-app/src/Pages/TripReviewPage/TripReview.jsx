@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./TripReview.css";
 import userLogo from "../../images/user.png";
 import moverLogo from "../../images/mover.png";
-import ReactStars from "react-rating-stars-component";
-import { ReactionBarSelector } from "@charkour/react-reactions";
-import TextField from "@material-ui/core/TextField";
 import { Button, Icon } from "semantic-ui-react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
+import fire from "../../config/firebase.config";
+
 function TripReview() {
+  const user = fire.auth().currentUser;
   const { id } = useLocation().state;
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   const socket = io("http://localhost:8000", { transports: ["websocket"] });
   const handleContinue = () => {
-    history.push(`/review`);
+    history.push(`${user.uid}/home`);
   };
 
   const fetchTrip = async () => {

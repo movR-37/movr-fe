@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Button } from "@material-ui/core";
 import "./Payment.css";
 
 const CARD_OPTIONS = {
@@ -72,6 +72,9 @@ export default function Payment({ data }) {
 
   return (
     <div className="paymentPage-container">
+      <h1 className="landing-txt1" style={{ textAlign: "center" }}>
+        Enter Payment Details!
+      </h1>
       {!success ? (
         <form onSubmit={handleSubmit}>
           <fieldset className="FormGroup">
@@ -82,10 +85,14 @@ export default function Payment({ data }) {
           <button className="PaymentButton">Pay</button>
         </form>
       ) : (
-        <div>
-          <h2>Payment Successful!</h2>
-          <Button onClick={() => history.push("/tripsummary", { id: data.id })}>
-            View your trips!
+        <div className="paymentPage-sucess">
+          <h1 className="landing-txt1">Payment Successful!</h1>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => history.push("/tripsummary", { id: data.id })}
+          >
+            View Trip Summary!
           </Button>
         </div>
       )}

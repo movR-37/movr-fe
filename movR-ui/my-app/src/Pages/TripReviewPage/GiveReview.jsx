@@ -44,6 +44,7 @@ function GiveReview() {
     const putObject = {
       rating: value,
       review,
+      completed: true,
     };
     try {
       await axios.put(`http://localhost:8000/trips/${id}`, putObject);
