@@ -21,6 +21,7 @@ import TripHistory from './components/TripHistory/TripHistory';
 import CurrentTrip from './Pages/CurrentTrip/CurrentTrip';
 import TripReview from './Pages/TripReviewPage/TripReview';
 import GiveReview from './Pages/TripReviewPage/GiveReview';
+import Itinerary from './Pages/Itinerary/Itinerary';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
             <Route path="/add-profile" exact component={MoverProfile} />
             <Route path="/trip-history" exact component={TripHistory} />
             <Route path="/current-trip" exact component={CurrentTrip} />
+            <Route path="/itinerary" exact component={Itinerary} />
             <Redirect exact from="/" to="/welcome" />
           </Switch >
         </Router >
