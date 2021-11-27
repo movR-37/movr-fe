@@ -8,8 +8,8 @@ function InProgress() {
             <div className="progressCardWrap">
                 <div className="progressCard">
                     <div className="progress-pic">
-                            <h1 className="landing_txt1">Trip Is In Progress!</h1>
-                            <img src={progressLogo} alt="IMG" className="thumb"/>
+                            <h1 className="inProgress_txt1">Trip Is In Progress!</h1>
+                            <img src={progressLogo} alt="IMG" className="thumbProgress"/>
                     </div>
                 </div>
             </div>
