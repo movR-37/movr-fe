@@ -6,45 +6,6 @@ import fire from "../../config/firebase.config";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-// async function postImage({
-//   name,
-//   location,
-//   address,
-//   subtitle_2,
-//   lat,
-//   lng,
-//   about,
-//   files,
-// }) {
-//   const formData = new FormData();
-//   formData.append("name", name);
-//   formData.append("location", location);
-//   formData.append("address", address);
-//   formData.append("subtitle_2", subtitle_2);
-//   formData.append("latitude", lat);
-//   formData.append("longitude", lng);
-//   formData.append("about", about);
-//   formData.append("images", files);
-
-//   const profileObj = {
-//     name,
-//     location,
-//     address,
-//     subtitle_2,
-//     latitude: lat,
-//     longitude: lng,
-//     about,
-//     images: files,
-//     email:
-//   };
-
-//   let response = await axios.put("http://localhost:8000/movers", profileObj);
-//   const result = await axios.put("/images", formData, {
-//     headers: { "Content-Type": "multipart/form-data" },
-//   });
-//   return result.data;
-// }
-
 export default function MoverProfile() {
   const [counter, setCounter] = useState(0);
   const user = fire.auth().currentUser;

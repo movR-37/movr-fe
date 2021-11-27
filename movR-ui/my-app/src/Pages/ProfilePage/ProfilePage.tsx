@@ -90,7 +90,6 @@ export default function ProfilePage() {
       setProfileType(data!.profileType);
       setAbout(data!.about);
       setImages(data!.images)
-      console.log(images);
     }
 
     fetchUser(mover);

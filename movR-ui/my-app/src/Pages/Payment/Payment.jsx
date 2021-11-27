@@ -43,7 +43,7 @@ export default function Payment({ data }) {
       try {
         const { id } = paymentMethod;
         const response = await axios.post("http://localhost:8000/payment", {
-          amount: parseFloat(bill),
+          amount: parseFloat(bill) * 100,
           id,
         });
 
@@ -71,7 +71,7 @@ export default function Payment({ data }) {
   };
 
   return (
-    <>
+    <div className="paymentPage-container">
       {!success ? (
         <form onSubmit={handleSubmit}>
           <fieldset className="FormGroup">
@@ -84,13 +84,11 @@ export default function Payment({ data }) {
       ) : (
         <div>
           <h2>Payment Successful!</h2>
-          <Button
-            onClick={() => history.push("/current-trip", { id: data.id })}
-          >
+          <Button onClick={() => history.push("/tripsummary", { id: data.id })}>
             View your trips!
           </Button>
         </div>
       )}
-    </>
+    </div>
   );
 }
