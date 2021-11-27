@@ -90,9 +90,10 @@ export default function Payment({ data }) {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => history.push("/tripsummary", { id: data.id })}
+            // onClick={() => history.push("/tripsummary", { id: data.id })}
+            onClick={() => history.push("/review", { id: data.id })}
           >
-            View Trip Summary!
+            Proceed
           </Button>
         </div>
       )}

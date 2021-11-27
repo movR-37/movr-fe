@@ -122,12 +122,8 @@ function Itinerary() {
             <Button variant="contained" color="primary" onClick={handlePayment}>
               Proceed to Payment
             </Button>
-            <Button variant="contained" color="secondary">
-              Cancel
-            </Button>
           </List>
         </div>
-        <div className="btn"></div>
       </div>
     </div>
   );

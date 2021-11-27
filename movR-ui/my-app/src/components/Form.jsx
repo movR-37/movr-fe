@@ -41,7 +41,8 @@ export default function Form({ id }) {
 
   const handleAccept = async (e) => {
     e.preventDefault();
-    history.push("/itinerary", {
+
+    history.push("/inprogress", {
       id,
       bill: currentSum ? currentSum : 0,
       completed: false,
@@ -64,6 +65,7 @@ export default function Form({ id }) {
   return (
     <div className="reviewFormContainer">
       <form className="reviewForm-form">
+        <h1>Estimate Cost</h1>
         <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
           <OutlinedInput
             id="outlined-adornment-Time"
@@ -176,8 +178,10 @@ export default function Form({ id }) {
           className="gotoChat"
           onClick={(e) => handleAccept(e)}
         >
-          Proceed to Payment
+          Confirm Trip!
         </Button>
+        <br />
+        <br />
         <Button variant="outlined" onClick={(e) => handleCancel(e)}>
           Go Back
         </Button>

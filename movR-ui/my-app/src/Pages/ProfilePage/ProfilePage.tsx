@@ -154,7 +154,7 @@ export default function ProfilePage() {
             </div>
             <div className="review-component">
               <Button positive onClick={() => history.push(`/${user?.uid || "123"}/chat`)}>Chat</Button>
-              <Button positive onClick={() => history.push("/payment-cost", { id: state.value.allData._id })}>Pay</Button>
+              <Button positive onClick={() => history.push("/payment-cost", { id: state.value.allData._id })}>Estimate Trip Cost</Button>
               <Button onClick={cancelTrip}>Cancel</Button>
               {/* <Form /> */}
             </div>

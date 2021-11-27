@@ -14,7 +14,7 @@ function TripReview() {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const history = useHistory();
-  const socket = io("http://localhost:8000", { transports: ["websocket"] });
+  // const socket = io("http://localhost:8000", { transports: ["websocket"] });
   const handleContinue = () => {
     history.push(`${user.uid}/home`);
   };
@@ -30,14 +30,14 @@ function TripReview() {
   useEffect(() => {
     console.log(id);
     fetchTrip();
-    socket.on("connect", () => {
-      socket.emit("end-trip-request", { message: "End Trip", id });
-    });
-    socket.on("notify-user", (value) => {
-      console.log("value", value);
-      history.push("/review", { id });
-    });
-    console.log(data);
+    // socket.on("connect", () => {
+    //   socket.emit("end-trip-request", { message: "End Trip", id });
+    // });
+    // socket.on("notify-user", (value) => {
+    //   console.log("value", value);
+    //   history.push("/review", { id });
+    // });
+    // console.log(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -85,7 +85,7 @@ function TripReview() {
       </div>
       <div className="TripReview-master-containerTopBottom">
         <Button animated size="massive" onClick={handleContinue}>
-          <Button.Content visible>Continue</Button.Content>
+          <Button.Content visible>Finish</Button.Content>
           <Button.Content hidden>
             <Icon name="arrow right" />
           </Button.Content>

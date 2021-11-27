@@ -57,7 +57,8 @@ function GiveReview() {
       icon: "success",
       title: "Review Submitted Succesfully",
     });
-    history.push(`/${user.uid}/home`);
+    // history.push(`/${user.uid}/home`);
+    history.push(`/tripsummary`, { id });
   };
 
   return (
