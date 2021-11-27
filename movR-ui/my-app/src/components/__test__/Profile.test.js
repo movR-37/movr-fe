@@ -84,5 +84,5 @@ it("Profile - Estimate cost calculates correct estimate", async () => {
         fireEvent.click(linkElementButton);
     });
     const linkElement3 = getByLabelText('Estimated Cost');
-    expect(linkElement3.value).toBe("36.17");
+    expect(linkElement3.value).toBe("36.42");
   })
