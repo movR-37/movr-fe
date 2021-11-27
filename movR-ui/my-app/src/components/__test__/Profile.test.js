@@ -26,17 +26,17 @@ it("Profile - Renders review bar without crashing", () => {
     expect(linkElement).toBeInTheDocument();
 })
 
-it("Profile - Renders Collage container without crashing", () => {
-    const { getByTestId } = render(<ProfileCollage/>);
-    const linkElement = getByTestId('collage-masterdiv');
-    expect(linkElement).toBeInTheDocument();
-})
+// it("Profile - Renders Collage container without crashing", () => {
+//     const { getByTestId } = render(<ProfileCollage/>);
+//     const linkElement = getByTestId('collage-masterdiv');
+//     expect(linkElement).toBeInTheDocument();
+// })
 
-it("Profile - Renders review bar without crashing", () => {
-    const { getByTestId } = render(<ProfileCollage/>);
-    const linkElement = getByTestId('collage-masterGrid');
-    expect(linkElement).toBeInTheDocument();
-})
+// it("Profile - Renders review bar without crashing", () => {
+//     const { getByTestId } = render(<ProfileCollage/>);
+//     const linkElement = getByTestId('collage-masterGrid');
+//     expect(linkElement).toBeInTheDocument();
+// })
 
 it("Profile - Estimate cost time input field renders correctly", () => {
     const { getByLabelText} = render(<Form/>);
