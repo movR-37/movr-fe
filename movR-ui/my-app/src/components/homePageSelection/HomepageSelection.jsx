@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { io } from "socket.io-client";
 import fire from "../../config/firebase.config";
 
+// Selection component to select type of mover/city and request for mover
 export default function HomepageSelection() {
   const [socket, setSocket] = React.useState();
   const user = fire.auth().currentUser;
@@ -68,7 +69,6 @@ export default function HomepageSelection() {
           data-testid="optionsDropDown"
         >
           <MenuItem value={"Mover"}>Mover</MenuItem>
-          <MenuItem value={"Driver"}>Driver</MenuItem>
         </Select>
       </FormControl>
 

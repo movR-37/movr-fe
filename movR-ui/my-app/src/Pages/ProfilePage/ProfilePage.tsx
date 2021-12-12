@@ -47,6 +47,7 @@ interface IMover {
   about: string;
 }
 
+// Mover profile page for display to client
 export default function ProfilePage() {
   const history = useHistory();
   const user = fire.auth().currentUser;
@@ -62,6 +63,7 @@ export default function ProfilePage() {
   const [images, setImages] = useState<string[]>([]);
   const [about, setAbout] = useState("");
 
+  // Handle cancel trip by removing trip data from backend
   const cancelTrip = async () => {
     const { allData } = state.value;
     const response = await axios.delete(`http://localhost:8000/trips/${allData._id}`);
@@ -70,13 +72,13 @@ export default function ProfilePage() {
 
   }
 
+  // Get mover data on profile page from backend
   useEffect(() => {
     const { mover } = state.value;
     async function fetchUser(email: string) {
       const response = await axios.get(`http://localhost:8000/movers?email=${email}`);
       const responseData: Partial<IMover[]> = response.data.mover;
       const data = responseData.find((d) => d?.email === email);
-      console.log(data)
 
       setName(data!.name);
       setNumReviews(data!.noOfReviews);
@@ -154,7 +156,6 @@ export default function ProfilePage() {
               <Button positive onClick={() => history.push(`/${user?.uid || "123"}/chat`)}>Chat</Button>
               <Button positive onClick={() => history.push("/payment-cost", { id: state.value.allData._id })}>Estimate Trip Cost</Button>
               <Button onClick={cancelTrip}>Cancel</Button>
-              {/* <Form /> */}
             </div>
           </div>
 

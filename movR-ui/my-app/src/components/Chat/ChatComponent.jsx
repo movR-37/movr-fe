@@ -12,16 +12,12 @@ export default function ChatComponent() {
 
   useEffect(() => {
     socket.on("connect", () => {
-      console.log("Connected to the sv"); // x8WIv7-mJelg7on_ALbx
+      console.log("Connected to the sv");
       socket.emit("custom-event", "User is Connected");
     });
   }, []);
-
+  // On receival update message list
   socket.on("receive-message", (message) => {
-    // const newMsg = {
-    //   user: user.email,
-    //   message,
-    // };
     setAllMsgs([...allMsgs, message]);
   });
 

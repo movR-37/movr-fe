@@ -22,7 +22,7 @@ import TripReview from './Pages/TripReviewPage/TripReview';
 import GiveReview from './Pages/TripReviewPage/GiveReview';
 import Itinerary from './Pages/Itinerary/Itinerary';
 import InProgress from './Pages/InProgressPage/InProgress';
-
+// Main application init: consists of router to all other pages/components
 function App() {
 
   return (

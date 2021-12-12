@@ -51,7 +51,7 @@ export default function MoverProfile() {
   }, [lat, lng]);
 
   const handleCancel = () => {
-    // Go to waiting room
+    // Go back to waiting room
     history.push("/mover");
   };
 

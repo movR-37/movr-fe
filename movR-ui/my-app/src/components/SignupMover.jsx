@@ -1,7 +1,7 @@
 import React from "react";
 import Registrationcomp from "./registration-component/Registration-component";
 
-
+// Signup for mover context
 export default function SignupMover() {
     const formData = [
         {
