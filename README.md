@@ -4,7 +4,7 @@ Web application for MovR Relocation Services.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory (inside the my-app folder), you can run:
 
 ### `npm i`
 
