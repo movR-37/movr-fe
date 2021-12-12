@@ -10,6 +10,10 @@ In the project directory, you can run:
 
 Installs all the dependencies requried for building the app
 
+If for some reason after doing `npm i`, <br>there are still some dependencies that are not installed, 
+you can manually install them using
+`npm i 'PackageName' --save`
+
 ### `npm start`
 
 Runs the app.<br />
