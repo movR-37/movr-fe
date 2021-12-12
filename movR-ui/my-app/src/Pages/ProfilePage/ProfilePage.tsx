@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Container from "@material-ui/core/Container";
-import photos from "./temp_assets/photos.png";
 import ProfileHeader from "../../components/profileHeader/ProfileHeader";
 import { IProfileHeaderProps } from "../../components/profileHeader/ProfileHeader";
 import "./ProfilePage.css"
 import ProfileCollage from "../../components/collage/ProfileCollage";
-import BookingReservation from "../../components/reserveBooking/BookingReservation";
 import ProfileHighlights from "../../components/profileHighlights/ProfileHighlights";
 import AboutProfile from "../../components/aboutProfile/AboutProfile";
 import Dialog from '@material-ui/core/Dialog';

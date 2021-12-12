@@ -121,7 +121,6 @@ export default function MoverProfile() {
                 <div className="container-login100-form-btn">
                   <button
                     data-testid="infoButton"
-                    // onClick={handleSave}
                     type="submit"
                     className="login100-form-btn"
                     style={{ backgroundColor: "#800080" }}

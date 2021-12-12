@@ -82,7 +82,6 @@ export default function HomepageSelection() {
         color="secondary"
         className="get-started"
         onClick={handleSubmit}
-        // onClick={() => history.push("/profile")}
       >
         FIND ME A MOVER
       </Button>
