@@ -3,7 +3,6 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Signup from './components/Signup.jsx'
 import Login from './components/Login.jsx'
-import MapComponent from './components/Map/MapComponent.jsx'
 import HomePage from './components/Home/HomePage.jsx'
 import Chat from './components/Chat/Chat';
 import Profile from './Pages/ProfilePage/ProfilePage'
@@ -23,7 +22,7 @@ import TripReview from './Pages/TripReviewPage/TripReview';
 import GiveReview from './Pages/TripReviewPage/GiveReview';
 import Itinerary from './Pages/Itinerary/Itinerary';
 import InProgress from './Pages/InProgressPage/InProgress';
-
+// Main application init: consists of router to all other pages/components
 function App() {
 
   return (

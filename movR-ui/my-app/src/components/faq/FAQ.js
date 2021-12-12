@@ -1,7 +1,7 @@
 import React from 'react'
-import "./FAQ.css" 
+import "./FAQ.css"
 
-function FAQ ({faq, index, toggleFAQ}) {
+function FAQ({ faq, index, toggleFAQ }) {
 	return (
 		<div data-testid='masterDiv' className={"faq " + (faq.open ? 'open' : '')}
 			key={index}
@@ -9,7 +9,7 @@ function FAQ ({faq, index, toggleFAQ}) {
 			<div data-testid='questionDiv' className="faq-question">
 				{faq.question}
 			</div>
-			<div data-testid='answerDiv'className="faq-answer">
+			<div data-testid='answerDiv' className="faq-answer">
 				{faq.answer}
 			</div>
 		</div>

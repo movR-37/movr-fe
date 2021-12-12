@@ -23,17 +23,14 @@ export default function Form({ id }) {
   const [estimatedDistance, setEstimatedDistance] = useState("");
   const [currentTime, setCurrentTime] = useState();
   const [currentDistance, setCurrentDistance] = useState();
-  // const [trip, setTrip] = useState();
   const history = useHistory();
   const user = fire.auth().currentUser;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // console.log(currentTip);
     const total = estimatedTime * 30 + 1.67 * estimatedDistance;
     const totalTip = (total * currentTip) / 1000;
     let val = total * 1.15 + totalTip;
-    // console.log(total, totalWithTip, val);
     setCurrentSum(parseFloat(val).toFixed(2));
     setCurrentTime(parseFloat(estimatedTime).toFixed(2));
     setCurrentDistance(parseFloat(estimatedDistance).toFixed(2));
@@ -110,11 +107,6 @@ export default function Form({ id }) {
         <br />
         <p>Hourly rate: 30$</p>
         <p>Tax: 15%</p>
-        {/* cost calculated by current cost of petrol =1.67/l x  estimated distance * mileage + hourlycost + tax*/}
-        {/* <input readOnly placeholder='Hourly Rate' 
-                value = {hourlyRate} 
-                onChange={e => setHourlyRate(e.target.value)}>
-                </input> */}
         <br />
         <FormControl component="fieldset">
           <FormLabel component="legend">Select Tip %</FormLabel>
@@ -154,12 +146,8 @@ export default function Form({ id }) {
         >
           Calculate Cost
         </Button>
-        {/* <Button size="medium" onClick={(e) => onSubmit(e)}>
-          Calculate Cost
-        </Button> */}
         <br />
         <br />
-        {/* <input type="text" id="result" value = {currentSum} readOnly placeholder='$$$'/> */}
         <TextField
           label="Estimated Cost"
           id="result"

@@ -11,20 +11,7 @@ interface IProfileCollage {
 export default function ProfileCollage({ profileImages }: IProfileCollage) {
     const [openModal, setOpenModal] = useState(false);
     const handleClick = () => setOpenModal(true);
-    // const images: IModalProps["images"] = [
-    //     "1.jpeg",
-    //     "2.jpeg",
-    //     "3.jpeg",
-    //     "4.jpeg",
-    // ]
     const images: IModalProps["images"] = profileImages
-
-    // const bigImage = "1.jpeg";
-    // const smallUpperLeft = "3.jpeg";
-    // const smallUpperRight = "2.jpeg";
-    // const smallBottomLeft = "4.jpeg";
-    // const smallBottomRight = "6.jpeg";
-
     const bigImage = profileImages[0];
     const smallUpperLeft = profileImages[1];
     const smallUpperRight = profileImages[2];
